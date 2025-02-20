@@ -117,6 +117,7 @@ function App() {
         <h1>Hello, Welcome to FreebieFinder!</h1>
         <Routes>
           <Route path="/login" element={<Login handleSubmit={loginUser} />} />
+          <Route path="/signup" element={<Login handleSubmit={signupUser} buttonLabel="Sign Up" />} />
           <Route path="/" element={<h2>Welcome to the App</h2>} />
         </Routes>
       </div>
