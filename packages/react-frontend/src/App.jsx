@@ -7,13 +7,13 @@ function App() {
   const [characters, setCharacters] = useState([]);
   const INVALID_TOKEN = "INVALID_TOKEN";
   const [token, setToken] = useState(INVALID_TOKEN);
-  const [message, setMessage] = useState(""); 
+  const [message, setMessage] = useState("");
 
   function fetchUsers() {
     const promise = fetch(`http://localhost:8000/users`, {
-      headers: addAuthHeader()
+      headers: addAuthHeader(),
     });
-  
+
     return promise;
   }
 
@@ -23,7 +23,7 @@ function App() {
     } else {
       return {
         ...otherHeaders,
-        Authorization: `Bearer ${token}`
+        Authorization: `Bearer ${token}`,
       };
     }
   }
@@ -32,27 +32,23 @@ function App() {
     const promise = fetch(`http://localhost:8000/login`, {
       method: "POST",
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
       },
-      body: JSON.stringify(creds)
+      body: JSON.stringify(creds),
     })
       .then((response) => {
         if (response.status === 200) {
-          response
-            .json()
-            .then((payload) => setToken(payload.token));
+          response.json().then((payload) => setToken(payload.token));
           setMessage(`Login successful; Authentication token saved`);
           console.log(message);
         } else {
-          setMessage(
-            `Login Error ${response.status}: ${response.data}`
-          );
+          setMessage(`Login Error ${response.status}: ${response.data}`);
         }
       })
       .catch((error) => {
         setMessage(`Login Error: ${error}`);
       });
-  
+
     return promise;
   }
 
@@ -60,50 +56,42 @@ function App() {
     const promise = fetch(`http://localhost:8000/signup`, {
       method: "POST",
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
       },
-      body: JSON.stringify(creds)
+      body: JSON.stringify(creds),
     })
       .then((response) => {
         if (response.status === 201) {
-          response
-            .json()
-            .then((payload) => setToken(payload.token));
+          response.json().then((payload) => setToken(payload.token));
           setMessage(
-            `Signup successful for user: ${creds.username}; auth token saved`
+            `Signup successful for user: ${creds.username}; auth token saved`,
           );
-          console.log(message)
+          console.log(message);
         } else {
-          setMessage(
-            `Signup Error ${response.status}: ${response.data}`
-          );
+          setMessage(`Signup Error ${response.status}: ${response.data}`);
         }
       })
       .catch((error) => {
         setMessage(`Signup Error: ${error}`);
       });
-  
+
     return promise;
   }
 
   useEffect(() => {
     fetchUsers()
-      .then((res) =>
-        res.status === 200 ? res.json() : undefined
-    )
-    .then((json) => {
-      if (json) {
-        setCharacters(json["users_list"]);
-      } else {
-        setCharacters(null);
-      }
-    })
+      .then((res) => (res.status === 200 ? res.json() : undefined))
+      .then((json) => {
+        if (json) {
+          setCharacters(json["users_list"]);
+        } else {
+          setCharacters(null);
+        }
+      })
       .catch((error) => {
         console.log(error);
       });
   }, []);
-
-  
 
   return (
     <Router>
@@ -111,7 +99,10 @@ function App() {
         <h1>Hello, Welcome to FreebieFinder!</h1>
         <Routes>
           <Route path="/login" element={<Login handleSubmit={loginUser} />} />
-          <Route path="/signup" element={<Login handleSubmit={signupUser} buttonLabel="Sign Up" />} />
+          <Route
+            path="/signup"
+            element={<Login handleSubmit={signupUser} buttonLabel="Sign Up" />}
+          />
           <Route path="/" element={<h2>Welcome to the App</h2>} />
         </Routes>
       </div>
