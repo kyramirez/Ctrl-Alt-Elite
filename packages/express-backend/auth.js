@@ -19,6 +19,7 @@ export function registerUser(req, res) {
           console.log("Token:", token);
           res.status(201).send({ token: token });
           creds.push({ username, hashedPassword });
+          console.log(creds);
         });
       });
   }
@@ -71,7 +72,6 @@ export function loginUser(req, res) {
   );
 
   if (!retrievedUser) {
-    // invalid username
     res.status(401).send("Unauthorized");
   } else {
     bcrypt
@@ -82,7 +82,6 @@ export function loginUser(req, res) {
             res.status(200).send({ token: token });
           });
         } else {
-          // invalid password
           res.status(401).send("Unauthorized");
         }
       })

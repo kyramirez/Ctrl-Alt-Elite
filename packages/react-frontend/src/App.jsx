@@ -17,14 +17,6 @@ function App() {
     return promise;
   }
 
-  const promise = fetch(`http://localhost:8000/users`, {
-    method: "POST",
-    headers: addAuthHeader({
-      "Content-Type": "application/json"
-    }),
-    body: JSON.stringify(characters)
-  });
-
   function addAuthHeader(otherHeaders = {}) {
     if (token === INVALID_TOKEN) {
       return otherHeaders;
@@ -50,6 +42,7 @@ function App() {
             .json()
             .then((payload) => setToken(payload.token));
           setMessage(`Login successful; Authentication token saved`);
+          console.log(message);
         } else {
           setMessage(
             `Login Error ${response.status}: ${response.data}`
@@ -79,6 +72,7 @@ function App() {
           setMessage(
             `Signup successful for user: ${creds.username}; auth token saved`
           );
+          console.log(message)
         } else {
           setMessage(
             `Signup Error ${response.status}: ${response.data}`
