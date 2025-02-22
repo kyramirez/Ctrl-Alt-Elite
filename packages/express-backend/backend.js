@@ -3,6 +3,7 @@ import express from "express";
 import cors from "cors";
 import * as services from "./services/user-service.js";
 import dotenv from "dotenv";
+import { registerUser, loginUser, authenticateUser } from "./auth.js";
 import mongoose from "mongoose";
 
 dotenv.config();
@@ -19,6 +20,21 @@ mongoose
   .catch((error) => console.log(error));
 
 const app = express();
+app.use(cors());
+app.use(express.json());
+
+app.post("/signup", registerUser);
+app.post("/login", loginUser);
+
+app.get("/", (req, res) => {
+  res.send("Hello World!");
+});
+
+app.post("/users", authenticateUser, (req, res) => {
+  const userToAdd = req.body;
+  Users.addUser(userToAdd).then((result) => res.status(201).send(result));
+});
+
 const port = 8000;
 
 const findUserByName = (name) => {
@@ -44,13 +60,6 @@ const addUser = (user) => {
 const delUserById = (id) => {
   return services.default.delUserById(id);
 };
-
-app.use(cors());
-app.use(express.json());
-
-app.get("/", (req, res) => {
-  res.send("Hello World!");
-});
 
 app.get("/users", (req, res) => {
   const name = req.query.name;
@@ -92,6 +101,8 @@ app.get("/users/:id", (req, res) => {
     });
 });
 
+
+app.use(cors());
 app.post("/users", (req, res) => {
   const userToAdd = req.body;
   addUser(userToAdd)
@@ -112,16 +123,16 @@ app.delete("/users/:id", (req, res) => {
   console.log(userId);
 
   delUserById(userId)
-    .then((result) => {
-      if (result) {
-        res.status(204).send();
-      } else {
-        res.status(404).send("User not found : ${id}");
-      }
-    })
-    .catch((error) => {
-      res.status(500).send(error.name);
-    });
+      .then((result) => {
+        if (result) {
+          res.status(204).send();
+        } else {
+          res.status(404).send("User not found : ${id}");
+        }
+      })
+      .catch((error) => {
+        res.status(500).send(error.name);
+      });
 });
 
 app.listen(port, () => {
