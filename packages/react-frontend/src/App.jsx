@@ -78,6 +78,14 @@ function App() {
     return promise;
   }
 
+  function updateList(person) {
+    signupUser(person)
+      .then(() => setCharacters([...characters, person]))
+      .catch((error) => {
+        console.log(error);
+      });
+  }
+
   useEffect(() => {
     fetchUsers()
       .then((res) => (res.status === 200 ? res.json() : undefined))
