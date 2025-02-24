@@ -2,18 +2,15 @@
 import express from "express";
 import cors from "cors";
 import * as services from "./services/user-service.js";
-import dotenv from "dotenv";
+import * as dotenv from "dotenv";
 import { registerUser, loginUser, authenticateUser } from "./auth.js";
 import mongoose from "mongoose";
-import res from "express/lib/response.js";
 
 dotenv.config();
 
-const { MONGO_CONNECTION_STRING } = process.env;
-
 mongoose.set("debug", true);
 mongoose
-  .connect(MONGO_CONNECTION_STRING + "freebieDB", {
+  .connect(process.env.MONGO_CONNECTION_STRING + "freebieDB", {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
@@ -43,7 +40,7 @@ const addUser = (user) => {
 };
 
 const findUserById = (id) => {
-  return services.default.findById(id);
+  return services.default.findUserById(id);
 };
 
 const delUserById = (id) => {
@@ -117,5 +114,5 @@ app.delete("/users/:id", (req, res) => {
 });
 
 app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`);
+  console.log(`Example app listening at http://127.0.0.1:${port}`);
 });
