@@ -24,7 +24,7 @@ const UserSchema = new mongoose.Schema(
       default: Date.now(),
     },
   },
-  { collection: "users_list" },
+  { collection: "users" },
 );
 
 const ListingSchema = new mongoose.Schema(

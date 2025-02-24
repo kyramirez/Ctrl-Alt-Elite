@@ -1,49 +1,35 @@
-import mongoose from "mongoose";
-import userModel from "../models/user.js";
+import { User } from "../models/user.js";
 
-mongoose.set("debug", true);
-
-mongoose
-  .connect("mongodb://localhost:27017/users", {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
-  .catch((error) => console.log(error));
-
-function getUsers(name, job) {
+function getUsers(name) {
   let promise;
-  if (name === undefined && job === undefined) {
-    promise = userModel.find();
-  } else if (name && !job) {
+  if (name === undefined) {
+    promise = User.find({});
+  } else {
     promise = findUserByName(name);
-  } else if (job && !name) {
-    promise = findUserByJob(job);
   }
   return promise;
 }
 
-function findUserById(id) {
-  return userModel.findById(id);
-}
-
 function addUser(user) {
-  const userToAdd = new userModel(user);
-  const promise = userToAdd.save();
-  return promise;
+  const userToAdd = new User(user);
+  return userToAdd.save();
 }
 
 function findUserByName(name) {
-  return userModel.find({ name: name });
+  return User.find({ name: name });
 }
 
-function findUserByJob(job) {
-  return userModel.find({ job: job });
+function findUserById(id) {
+  return User.findById(id);
+}
+
+function delUserById(id) {
+  return User.deleteOne({ _id: id });
 }
 
 export default {
   addUser,
   getUsers,
   findUserById,
-  findUserByName,
-  findUserByJob,
+  delUserById,
 };

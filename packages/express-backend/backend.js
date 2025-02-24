@@ -5,6 +5,7 @@ import * as services from "./services/user-service.js";
 import dotenv from "dotenv";
 import { registerUser, loginUser, authenticateUser } from "./auth.js";
 import mongoose from "mongoose";
+import res from "express/lib/response.js";
 
 dotenv.config();
 
@@ -12,7 +13,7 @@ const { MONGO_CONNECTION_STRING } = process.env;
 
 mongoose.set("debug", true);
 mongoose
-  .connect(MONGO_CONNECTION_STRING + "users", {
+  .connect(MONGO_CONNECTION_STRING + "freebieDB", {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
@@ -32,29 +33,17 @@ app.get("/", (req, res) => {
 
 app.post("/users", authenticateUser, (req, res) => {
   const userToAdd = req.body;
-  Users.addUser(userToAdd).then((result) => res.status(201).send(result));
+  addUser(userToAdd).then((result) => res.status(201).send(result));
 });
 
 const port = 8000;
 
-const findUserByName = (name) => {
-  return services.default.findUserByName(name);
-};
-
-const findUserByJob = (job) => {
-  return services.default.findUserByJob(job);
+const addUser = (user) => {
+  return services.default.addUser(user);
 };
 
 const findUserById = (id) => {
-  return services.default.findUserById(id);
-};
-
-const findUserByNameAndJob = (name, job) => {
-  return services.default.getUsers(name, job);
-};
-
-const addUser = (user) => {
-  return services.default.addUser(user);
+  return services.default.findById(id);
 };
 
 const delUserById = (id) => {
@@ -63,15 +52,8 @@ const delUserById = (id) => {
 
 app.get("/users", (req, res) => {
   const name = req.query.name;
-  const job = req.query.job;
   let promise;
-  if (name && !job) {
-    promise = findUserByName(name);
-  } else if (job && !name) {
-    promise = findUserByJob(job);
-  } else {
-    promise = findUserByNameAndJob(name, job);
-  }
+  promise = services.default.getUsers(name);
 
   promise
     .then((result) => {
@@ -101,7 +83,6 @@ app.get("/users/:id", (req, res) => {
     });
 });
 
-
 app.use(cors());
 app.post("/users", (req, res) => {
   const userToAdd = req.body;
@@ -123,16 +104,16 @@ app.delete("/users/:id", (req, res) => {
   console.log(userId);
 
   delUserById(userId)
-      .then((result) => {
-        if (result) {
-          res.status(204).send();
-        } else {
-          res.status(404).send("User not found : ${id}");
-        }
-      })
-      .catch((error) => {
-        res.status(500).send(error.name);
-      });
+    .then((result) => {
+      if (result) {
+        res.status(204).send();
+      } else {
+        res.status(404).send("User not found : ${id}");
+      }
+    })
+    .catch((error) => {
+      res.status(500).send(error.name);
+    });
 });
 
 app.listen(port, () => {
