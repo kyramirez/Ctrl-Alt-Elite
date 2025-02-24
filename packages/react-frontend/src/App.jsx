@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./App.css";
 import Login from "./Login";
+import ListingsPage from './components/listings/ListingsPage'; 
 
 function App() {
   const [characters, setCharacters] = useState([]);
@@ -78,6 +79,14 @@ function App() {
     return promise;
   }
 
+  function updateList(person) {
+    signupUser(person)
+      .then(() => setCharacters([...characters, person]))
+      .catch((error) => {
+        console.log(error);
+      });
+  }
+
   useEffect(() => {
     fetchUsers()
       .then((res) => (res.status === 200 ? res.json() : undefined))
@@ -103,6 +112,7 @@ function App() {
             path="/signup"
             element={<Login handleSubmit={signupUser} buttonLabel="Sign Up" />}
           />
+          <Route path="/listings" element={<ListingsPage />} />
           <Route path="/" element={<h2>Welcome to the App</h2>} />
         </Routes>
       </div>
