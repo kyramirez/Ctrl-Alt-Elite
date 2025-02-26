@@ -111,7 +111,6 @@ function App() {
   return (
     <Router>
       <div>
-        <h1>Hello, Welcome to FreebieFinder!</h1>
         <Routes>
           <Route path="/login" element={<Login handleSubmit={loginUser} />} />
           <Route
