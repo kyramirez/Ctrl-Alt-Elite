@@ -66,7 +66,6 @@ function App() {
           setMessage(
             `Signup successful for user: ${creds.username}; auth token saved`,
           );
-          console.log(message);
         } else {
           setMessage(`Signup Error ${response.status}: ${response.data}`);
         }
@@ -100,6 +99,12 @@ function App() {
         console.log(error);
       });
   }, []);
+
+  useEffect(() => {
+    if (message) {
+      console.log(message);
+    }
+  }, [message]);
 
   return (
     <Router>
