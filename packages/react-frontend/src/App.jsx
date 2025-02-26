@@ -5,11 +5,14 @@ import "./App.css";
 import Login from "./Login";
 import LandingPage from "./components/LandingPage";
 
+
 function App() {
   const [characters, setCharacters] = useState([]);
   const INVALID_TOKEN = "INVALID_TOKEN";
   const [token, setToken] = useState(INVALID_TOKEN);
   const [message, setMessage] = useState("");
+
+
 
   function fetchUsers() {
     const promise = fetch(`http://localhost:8000/users`, {
@@ -43,6 +46,7 @@ function App() {
           response.json().then((payload) => setToken(payload.token));
           setMessage(`Login successful; Authentication token saved`);
           console.log(message);
+
         } else {
           setMessage(`Login Error ${response.status}: ${response.data}`);
         }
@@ -69,6 +73,7 @@ function App() {
             `Signup successful for user: ${creds.username}; auth token saved`,
           );
           console.log(message);
+
         } else {
           setMessage(`Signup Error ${response.status}: ${response.data}`);
         }
