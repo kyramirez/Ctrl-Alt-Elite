@@ -1,0 +1,37 @@
+.account-container {
+    text-align: center;
+    padding: 20px;
+  }
+  
+  .profile-section {
+    margin-bottom: 20px;
+  }
+  
+  .avatar {
+    width: 100px;
+    height: 100px;
+    background: lightgray;
+    border-radius: 50%;
+    display: inline-block;
+  }
+  
+  .edit-profile-btn {
+    padding: 10px 20px;
+    border: none;
+    background-color: blue;
+    color: white;
+    cursor: pointer;
+  }
+  
+  .listingsGrid {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+  }
+  
+  .listingCard {
+    width: 150px;
+    height: 100px;
+    background: gray;
+  }
+  
