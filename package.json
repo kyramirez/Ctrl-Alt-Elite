@@ -25,6 +25,7 @@
     "prettier": "^3.5.1"
   },
   "dependencies": {
-    "bootstrap": "^5.3.3"
+    "bootstrap": "^5.3.3",
+    "mongoose": "^8.12.0"
   }
 }
