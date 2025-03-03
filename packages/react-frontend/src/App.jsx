@@ -110,6 +110,12 @@ function App() {
     }
   }, [message]);
 
+  // useEffect(() => {
+  //   if (token !== INVALID_TOKEN) {
+  //     navigate("/listings");
+  //   }
+  // }, [token]);
+
   return (
     <Router>
       <div>

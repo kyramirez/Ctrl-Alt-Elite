@@ -1,22 +1,25 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function Login(props) {
   const [creds, setCreds] = useState({
     username: "",
-    pwd: ""
+    pwd: "",
   });
+  const navigate = useNavigate();
 
   function handleChange(event) {
     const { name, value } = event.target;
     setCreds((prevCreds) => ({
       ...prevCreds,
-      [name]: value
+      [name]: value,
     }));
   }
 
   function submitForm() {
     props.handleSubmit(creds);
     setCreds({ username: "", pwd: "" });
+    navigate("/listings");
   }
 
   const formStyle = {
@@ -27,20 +30,20 @@ function Login(props) {
     borderRadius: "8px",
     backgroundColor: "#f9f9f9",
     boxShadow: "2px 2px 10px rgba(0, 0, 0, 0.1)",
-    textAlign: "center"
+    textAlign: "center",
   };
 
   const formGroupStyle = {
     marginBottom: "15px",
     display: "flex",
     flexDirection: "column",
-    alignItems: "center"
+    alignItems: "center",
   };
 
   const labelStyle = {
     marginBottom: "5px",
     fontWeight: "bold",
-    color: "#333" // Ensuring label text is visible
+    color: "#333", // Ensuring label text is visible
   };
 
   const inputStyle = {
@@ -49,7 +52,7 @@ function Login(props) {
     border: "1px solid #ccc",
     borderRadius: "4px",
     color: "#000", // Setting text color to black
-    backgroundColor: "#fff" // Ensuring background contrast
+    backgroundColor: "#fff", // Ensuring background contrast
   };
 
   const buttonStyle = {
@@ -61,13 +64,15 @@ function Login(props) {
     borderRadius: "4px",
     cursor: "pointer",
     fontSize: "16px",
-    marginTop: "10px"
+    marginTop: "10px",
   };
 
   return (
     <form style={formStyle}>
       <div style={formGroupStyle}>
-        <label htmlFor="username" style={labelStyle}>Username</label>
+        <label htmlFor="username" style={labelStyle}>
+          Username
+        </label>
         <input
           type="text"
           name="username"
@@ -79,7 +84,9 @@ function Login(props) {
       </div>
 
       <div style={formGroupStyle}>
-        <label htmlFor="password" style={labelStyle}>Password</label>
+        <label htmlFor="password" style={labelStyle}>
+          Password
+        </label>
         <input
           type="password"
           name="pwd"
