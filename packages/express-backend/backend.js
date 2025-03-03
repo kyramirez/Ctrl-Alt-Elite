@@ -2,11 +2,14 @@
 import express from "express";
 import cors from "cors";
 import * as services from "./services/user-service.js";
-import * as dotenv from "dotenv";
+import dotenv from "dotenv";
 import { registerUser, loginUser, authenticateUser } from "./auth.js";
 import mongoose from "mongoose";
+import listingsRouter from './routes/listings.js';
 
 dotenv.config();
+
+const { MONGO_CONNECTION_STRING } = process.env;
 
 mongoose.set("debug", true);
 mongoose
@@ -23,6 +26,8 @@ app.use(express.json());
 
 app.post("/signup", registerUser);
 app.post("/login", loginUser);
+// for all listings
+app.post('/listings', listingsRouter);
 
 app.get("/", (req, res) => {
   res.send("Hello World!");
