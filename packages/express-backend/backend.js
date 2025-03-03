@@ -9,8 +9,6 @@ import listingsRouter from "./routes/listings_route.js";
 
 dotenv.config();
 
-console.log(process.env.MONGO_CONNECTION_STRING);
-
 mongoose.set("debug", true);
 mongoose
   .connect(process.env.MONGO_CONNECTION_STRING + "freebieDB", {

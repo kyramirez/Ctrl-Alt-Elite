@@ -1,13 +1,11 @@
 import { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import 'bootstrap/dist/css/bootstrap.css'
+import "bootstrap/dist/css/bootstrap.css";
 import "./App.css";
 import Login from "./Login";
 import LandingPage from "./components/LandingPage";
-import ListingsPage from './components/Listings/ListingsPage.jsx';
-import AccountPage from "./components/Account/AccountPage";
-
-
+import ListingsPage from "./components/Listings/ListingsPage.jsx";
+import AccountPage from "./components/Account/accountPage.jsx";
 
 function App() {
   const [characters, setCharacters] = useState([]);
@@ -116,7 +114,7 @@ function App() {
     <Router>
       <div>
         <Routes>
-          <Route path="/" element={<LandingPage/>} />
+          <Route path="/" element={<LandingPage />} />
           <Route path="/login" element={<Login handleSubmit={loginUser} />} />
           <Route
             path="/signUp"
@@ -124,7 +122,6 @@ function App() {
           />
           <Route path="/listings" element={<ListingsPage />} />
           <Route path="/account" element={<AccountPage />} />
-          <Route path="/" element={<h2>Welcome to the App</h2>} />
         </Routes>
       </div>
     </Router>
