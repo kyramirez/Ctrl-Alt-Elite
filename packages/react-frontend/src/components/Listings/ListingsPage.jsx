@@ -14,6 +14,8 @@ const sampleListings = [
 function ListingsPage() {
   const navigate = useNavigate();
 
+  
+
   return (
     <div className="container">
       <header className="header">
