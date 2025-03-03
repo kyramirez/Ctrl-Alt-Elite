@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./App.css";
 import Login from "./Login";
 import ListingsPage from './components/Listings/ListingsPage.jsx';
+import AccountPage from "./components/Account/AccountPage";
 
 
 
@@ -118,6 +119,7 @@ function App() {
             element={<Login handleSubmit={signupUser} buttonLabel="Sign Up" />}
           />
           <Route path="/listings" element={<ListingsPage />} />
+          <Route path="/account" element={<AccountPage />} />
           <Route path="/" element={<h2>Welcome to the App</h2>} />
         </Routes>
       </div>

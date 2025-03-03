@@ -1,9 +1,11 @@
 // ListingsPage.jsx
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from "react-router-dom";
 import './ListingsPage.css'; 
 
 function ListingsPage() {
     const [listings, setListings] = useState([]);
+    const navigate = useNavigate();
 
     useEffect(() => {
         fetch('http://localhost:8000/listings')
@@ -23,6 +25,12 @@ function ListingsPage() {
 
     return (
         <div className="container">
+            <header className="header">
+        <img src="/assets/logo.png" alt="Logo" className="logo" />
+        <button className="profile-button" onClick={() => navigate("/account")}>
+          <img src="/assets/profile-icon.png" alt="Profile" />
+        </button>
+      </header>
             <h1>All Listings</h1>
             <div className="listingsGrid">
                 {listings.map(listing => (
