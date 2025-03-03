@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import 'bootstrap/dist/css/bootstrap.css'
 import "./App.css";
 import Login from "./Login";
-import ListingsPage from './components/Listings/ListingsPage.jsx';
-
+import LandingPage from "./components/LandingPage";
 
 
 function App() {
@@ -113,13 +113,12 @@ function App() {
     <Router>
       <div>
         <Routes>
+          <Route path="/" element={<LandingPage/>} />
           <Route path="/login" element={<Login handleSubmit={loginUser} />} />
           <Route
-            path="/signup"
+            path="/signUp"
             element={<Login handleSubmit={signupUser} buttonLabel="Sign Up" />}
           />
-          <Route path="/listings" element={<ListingsPage />} />
-          <Route path="/" element={<h2>Welcome to the App</h2>} />
         </Routes>
       </div>
     </Router>
