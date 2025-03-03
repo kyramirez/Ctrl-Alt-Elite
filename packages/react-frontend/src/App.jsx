@@ -3,7 +3,13 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.css'
 import "./App.css";
 import Login from "./Login";
+<<<<<<< HEAD
 import LandingPage from "./components/LandingPage";
+=======
+import ListingsPage from './components/Listings/ListingsPage.jsx';
+import AccountPage from "./components/Account/AccountPage";
+
+>>>>>>> account-page
 
 
 function App() {
@@ -119,6 +125,9 @@ function App() {
             path="/signUp"
             element={<Login handleSubmit={signupUser} buttonLabel="Sign Up" />}
           />
+          <Route path="/listings" element={<ListingsPage />} />
+          <Route path="/account" element={<AccountPage />} />
+          <Route path="/" element={<h2>Welcome to the App</h2>} />
         </Routes>
       </div>
     </Router>
