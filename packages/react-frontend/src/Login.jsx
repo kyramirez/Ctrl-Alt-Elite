@@ -67,7 +67,7 @@ function Login(props) {
   return (
     <form style={formStyle}>
       <div style={formGroupStyle}>
-        <label htmlFor="username" style={labelStyle}>UserName</label>
+        <label htmlFor="username" style={labelStyle}>Username</label>
         <input
           type="text"
           name="username"
