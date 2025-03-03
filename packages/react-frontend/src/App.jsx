@@ -3,6 +3,8 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./App.css";
 import Login from "./Login";
 import ListingsPage from './components/Listings/ListingsPage.jsx';
+import SingleListingPage from "./components/Listings/SingleListingPage.jsx";
+import LandingPage from "./components/Listings/LandingPage.jsx";
 
 
 
@@ -111,9 +113,10 @@ function App() {
   return (
     <Router>
       <div>
-        <h1>Hello, Welcome to FreebieFinder!</h1>
         <Routes>
           <Route path="/login" element={<Login handleSubmit={loginUser} />} />
+          <Route path="/" element={<LandingPage />} />
+          <Route path="/singleListingPage" element={<SingleListingPage />} />
           <Route
             path="/signup"
             element={<Login handleSubmit={signupUser} buttonLabel="Sign Up" />}
