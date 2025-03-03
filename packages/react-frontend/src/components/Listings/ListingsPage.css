@@ -56,6 +56,7 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
+<<<<<<< HEAD
   }
   
   .listingTitle {
@@ -68,3 +69,23 @@
     font-size: 14px;
     border-radius: 3px;
   }
+=======
+    border-radius: 8px; 
+}
+
+.listingCard h3, .listingCard p {
+    margin: 10px 0;
+}
+
+.profile-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .profile-button img {
+    width: 40px;
+    border-radius: 50%;
+  }
+
+>>>>>>> account-page

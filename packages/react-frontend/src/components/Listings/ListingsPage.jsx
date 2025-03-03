@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import "./ListingsPage.css";
@@ -13,17 +14,34 @@ const sampleListings = [
 
 function ListingsPage() {
   const navigate = useNavigate();
+=======
+// ListingsPage.jsx
+import React, { useEffect, useState } from 'react';
+import { useNavigate } from "react-router-dom";
+import './ListingsPage.css'; 
+
+function ListingsPage() {
+    const [listings, setListings] = useState([]);
+    const navigate = useNavigate();
+>>>>>>> account-page
 
   
 
+<<<<<<< HEAD
   return (
     <div className="container">
       <header className="header">
+=======
+    return (
+        <div className="container">
+            <header className="header">
+>>>>>>> account-page
         <img src="/assets/logo.png" alt="Logo" className="logo" />
         <button className="profile-button" onClick={() => navigate("/account")}>
           <img src="/assets/profile-icon.png" alt="Profile" />
         </button>
       </header>
+<<<<<<< HEAD
 
       <h1>All Listings</h1>
       <div className="listingsGrid">
@@ -36,6 +54,20 @@ function ListingsPage() {
       </div>
     </div>
   );
+=======
+            <h1>All Listings</h1>
+            <div className="listingsGrid">
+                {listings.map(listing => (
+                    <div key={listing.id} className="listingCard">
+                        <img src={listing.imageUrl || '/assets/default-listing.jpg'} alt={listing.title} />
+                        <h3>{listing.title}</h3>
+                        <p>{listing.description}</p>
+                    </div>
+                ))}
+            </div>
+        </div>
+    );
+>>>>>>> account-page
 }
 
 export default ListingsPage;
