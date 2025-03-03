@@ -3,13 +3,10 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.css'
 import "./App.css";
 import Login from "./Login";
-<<<<<<< HEAD
 import LandingPage from "./components/LandingPage";
-=======
 import ListingsPage from './components/Listings/ListingsPage.jsx';
 import AccountPage from "./components/Account/AccountPage";
 
->>>>>>> account-page
 
 
 function App() {
