@@ -1,32 +1,75 @@
 import React from "react";
-import "./accountPage.css";
+import "./AccountPage.css";
 
 const sampleImages = [
-  "https://source.unsplash.com/300x200/?electronics",
-  "https://source.unsplash.com/300x200/?furniture",
-  "https://source.unsplash.com/300x200/?bike",
-  "https://source.unsplash.com/300x200/?shoes",
-  "https://source.unsplash.com/300x200/?books",
-  "https://source.unsplash.com/300x200/?watch",
+  {
+    title: "Smartphone",
+    imageUrl:
+      "https://images.unsplash.com/photo-1634403665481-74948d815f03?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  },
+  {
+    title: "Laptop",
+    imageUrl:
+      "https://images.unsplash.com/photo-1531297484001-80022131f5a1?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8bGFwdG9wfGVufDB8fDB8fHwy",
+  },
+  {
+    title: "Gaming Console",
+    imageUrl:
+      "https://images.unsplash.com/photo-1588689115724-a624efec3c93?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Z2FtZSUyMGNvbnNvbGV8ZW58MHx8MHx8fDI%3D",
+  },
+  {
+    title: "Bicycle",
+    imageUrl:
+      "https://images.unsplash.com/photo-1485965120184-e220f721d03e?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8YmlrZXxlbnwwfHwwfHx8Mg%3D%3D",
+  },
+  {
+    title: "Sneakers",
+    imageUrl:
+      "https://images.unsplash.com/photo-1605348532760-6753d2c43329?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8c25lYWtlcnxlbnwwfHwwfHx8Mg%3D%3D",
+  },
+  {
+    title: "Furniture",
+    imageUrl:
+      "https://images.unsplash.com/photo-1618220179428-22790b461013?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8ZnVybml0dXJlfGVufDB8fDB8fHwy",
+  },
 ];
 
 function AccountPage() {
   return (
     <div className="account-container">
+      {/* Profile Section */}
       <div className="profile-section">
-        <div className="avatar"></div>
-        <h2 className="profile-info">Full Name</h2>
-        <p className="profile-stats">
-          Number of Items Listed - Number of Items Sold
-        </p>
-        <p className="bio">Space for bio</p>
-        <button className="edit-profile-btn">Edit Profile</button>
+        {/* Plus Button for Uploading Items */}
+        <button className="add-item-btn">+</button>
+
+        {/* Avatar and Full Name in the same row */}
+        <div className="profile-header">
+          <div className="avatar"></div>
+          <h2 className="profile-info">Full Name</h2>
+        </div>
+
+        {/* Star Rating (Directly Under Profile Picture) */}
+        <div className="star-rating">
+          <span className="star">★</span>
+          <span className="star">★</span>
+          <span className="star">★</span>
+          <span className="star">★</span>
+          <span className="star">★</span>
+        </div>
+
+        {/* Centered Bio & Edit Profile Button */}
+        <div className="profile-actions">
+          <p className="bio">Space for bio</p>
+          <button className="edit-profile-btn">Edit Profile</button>
+        </div>
       </div>
 
+      {/* Listings Grid */}
       <div className="listingsGrid">
-        {sampleImages.map((image, index) => (
+        {sampleImages.map((item, index) => (
           <div key={index} className="listingCard">
-            <img src={image} alt={`Item ${index + 1}`} />
+            <img src={item.imageUrl} alt={item.title} />
+            <h3 className="listing-title">{item.title}</h3>{" "}
           </div>
         ))}
       </div>

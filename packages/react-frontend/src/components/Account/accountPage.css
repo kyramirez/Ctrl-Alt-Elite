@@ -1,51 +1,110 @@
 /* Account Page Container */
 .account-container {
-  width: 80%;
-  max-width: 1000px;
+  width: 90vw;
+  max-width: 1200px;
   margin: 0 auto;
-  text-align: center;
   padding: 20px;
-  background: white;
+  background: #ffffff;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  position: relative;
 }
 
 /* Profile Section */
 .profile-section {
+  position: relative;
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  flex-direction: column; /* Stack items properly */
+  align-items: flex-start;
   padding: 20px;
   border-bottom: 2px solid #ddd;
 }
 
+/* Row Layout for Avatar and Full Name */
+.profile-header {
+  display: flex;
+  align-items: center;
+  gap: 15px; /* Space between avatar and name */
+}
+
+/* Avatar */
 .avatar {
-  width: 100px;
-  height: 100px;
-  background: lightgray;
+  width: 120px;
+  height: 120px;
+  background-color: #f3f3f3;
   border-radius: 50%;
-  display: block;
-  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  flex-shrink: 0;
 }
 
+/* Inner icon (head) */
+.avatar::before {
+  content: "";
+  width: 50%;
+  height: 50%;
+  background-color: #d1d1d1;
+  border-radius: 50%;
+  position: absolute;
+  top: 22%;
+  left: 25%;
+}
+
+/* Bottom oval (shoulders) */
+.avatar::after {
+  content: "";
+  width: 75%;
+  height: 30%;
+  background-color: #d1d1d1;
+  border-radius: 50%;
+  position: absolute;
+  bottom: 5%;
+  left: 12%;
+}
+
+/* Profile Info */
 .profile-info {
-  font-size: 18px;
-  margin-bottom: 10px;
+  font-size: 20px;
+  font-weight: bold;
+  text-align: left;
 }
 
-.profile-stats {
-  font-size: 14px;
-  color: gray;
+/* Star Ratings - Positioned Directly Below Profile Picture */
+.star-rating {
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+  margin-top: 10px;
 }
 
+.star {
+  font-size: 20px;
+  color: gold;
+}
+
+/* Bio & Edit Profile Button - Now Positioned Correctly */
+.profile-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin-bottom: 20px; /* Ensures it stays above the item listings */
+  text-align: center;
+}
+
+/* Bio */
 .bio {
-  width: 80%;
+  width: 50%;
   background: #f3f3f3;
   padding: 10px;
   border-radius: 5px;
-  margin: 10px auto;
+  margin-bottom: 10px;
 }
 
+/* Edit Profile Button */
 .edit-profile-btn {
   padding: 10px 20px;
   border: none;
@@ -53,7 +112,7 @@
   color: white;
   cursor: pointer;
   border-radius: 5px;
-  margin-top: 10px;
+  font-size: 16px;
 }
 
 /* Listings Grid */
@@ -64,6 +123,7 @@
   padding: 20px 0;
 }
 
+/* Fix Item Cards */
 .listingCard {
   width: 100%;
   height: 150px;
@@ -73,9 +133,80 @@
   background: #f9f9f9;
 }
 
+/* Item Images */
 .listingCard img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
-  
+
+/* Title Styling for Each Item */
+.listing-title {
+  text-align: center;
+  font-size: 16px;
+  font-weight: bold;
+  margin-top: 5px;
+  color: #333;
+}
+
+
+/* Plus Button - Top Right for Uploading Items */
+.add-item-btn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  background-color: #007bff;
+  color: white;
+  font-size: 28px;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition:
+    background-color 0.2s,
+    transform 0.2s;
+}
+
+/* Hover Effect */
+.add-item-btn:hover {
+  background-color: #0056b3;
+  transform: scale(1.1);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .profile-section {
+    align-items: center;
+    text-align: center;
+  }
+
+  .profile-header {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .profile-actions {
+    width: 80%;
+  }
+
+  .bio {
+    width: 80%;
+  }
+
+  .listingsGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .listingsGrid {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
