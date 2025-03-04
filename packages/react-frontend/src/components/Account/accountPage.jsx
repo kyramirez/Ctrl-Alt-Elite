@@ -70,6 +70,7 @@ function AccountPage() {
           <div key={index} className="listingCard">
             <img src={item.imageUrl} alt={item.title} />
             <h3 className="listing-title">{item.title}</h3>{" "}
+            {/* Move title below image */}
           </div>
         ))}
       </div>

@@ -126,29 +126,36 @@
 /* Fix Item Cards */
 .listingCard {
   width: 100%;
-  height: 150px;
+  padding-top: 80%;
+  border-radius: 5px;
   border-radius: 5px;
   overflow: hidden;
-  position: relative;
+  position: realtive;
   background: #f9f9f9;
 }
 
-/* Item Images */
+/* Ensure Images are Square and Cover the Box */
 .listingCard img {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: cover; /* Keeps images looking good */
+  border-radius: 5px;
 }
 
-/* Title Styling for Each Item */
+/* Item Title (Ensure It Appears Below the Image) */
 .listing-title {
-  text-align: center;
-  font-size: 16px;
-  font-weight: bold;
-  margin-top: 5px;
-  color: #333;
+  position: absolute;
+  bottom: 5px;
+  left: 5px;
+  background: rgba(0, 0, 0, 0.6);
+  color: white;
+  padding: 5px;
+  font-size: 14px;
+  border-radius: 3px;
 }
-
 
 /* Plus Button - Top Right for Uploading Items */
 .add-item-btn {
