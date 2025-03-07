@@ -21,8 +21,8 @@
 }
 
 .logo {
-  width: 100px;
-  height: 100px;
+  width: 150px;
+  height: 150px;
   border-radius: 50%;
 }
 
@@ -38,8 +38,9 @@
   cursor: pointer;
 }
 
+
 .profile-button img {
-  width: 40px;
+  width: 80px;
   border-radius: 3px;
 }
 
@@ -47,7 +48,7 @@
 .listingsGrid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
+  gap: 40px;
   padding: 20px 0;
 }
 
@@ -58,6 +59,11 @@
   overflow: hidden;
   position: relative;
   background: #f9f9f9;
+}
+
+.listingCard:hover {
+  transform: scale(1.05);
+  cursor: pointer;
 }
 
 .listingCard img {
