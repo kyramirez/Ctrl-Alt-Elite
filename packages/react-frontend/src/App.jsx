@@ -6,6 +6,7 @@ import Login from "./Login";
 import LandingPage from "./components/LandingPage";
 import ListingsPage from "./components/Listings/ListingsPage.jsx";
 import AccountPage from "./components/Account/accountPage.jsx";
+import CreateListingPage from "./components/CreateListingPage";
 
 function App() {
   const [characters, setCharacters] = useState([]);
@@ -122,12 +123,12 @@ function App() {
         <Routes>
           <Route path="/" element={<LandingPage />} />
           <Route path="/login" element={<Login handleSubmit={loginUser} />} />
-          <Route
-            path="/signUp"
-            element={<Login handleSubmit={signupUser} buttonLabel="Sign Up" />}
+          <Route path="/signUp" element={<Login handleSubmit={signupUser} buttonLabel="Sign Up" />}
           />
           <Route path="/listings" element={<ListingsPage />} />
           <Route path="/account" element={<AccountPage />} />
+          <Route path="/create-listing" element={<CreateListingPage />} />
+
         </Routes>
       </div>
     </Router>

@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import "./AccountPage.css";
 
 const sampleImages = [
@@ -35,13 +36,15 @@ const sampleImages = [
 ];
 
 function AccountPage() {
+  const navigate = useNavigate();
   return (
     <div className="account-container">
       {/* Profile Section */}
       <div className="profile-section">
         {/* Plus Button for Uploading Items */}
-        <button className="add-item-btn">+</button>
-
+        <button className="add-item-btn" onClick={() => navigate("/create-listing")}>
+        +
+      </button>
         {/* Avatar and Full Name in the same row */}
         <div className="profile-header">
           <div className="avatar"></div>
