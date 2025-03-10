@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "./CreateListingPage.css"; // Import the CSS file
+import "./CreateListingPage.css";
 
 function CreateListingPage() {
   const navigate = useNavigate();

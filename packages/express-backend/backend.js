@@ -1,42 +1,36 @@
-// backend.js
 import express from "express";
 import cors from "cors";
-import * as services from "./services/user-service.js";
-import dotenv from "dotenv";
-import { registerUser, loginUser, authenticateUser } from "./auth.js";
 import mongoose from "mongoose";
-import listingsRouter from "./routes/listings_route.js";
+import dotenv from "dotenv";
+import * as services from "./services/user-service.js";
+import { registerUser, loginUser, authenticateUser } from "./auth.js";
+import listingService from "./services/listing-service.js";
 
 dotenv.config();
 
 mongoose.set("debug", true);
 mongoose
   .connect(process.env.MONGO_CONNECTION_STRING + "freebieDB", {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
   })
-  .then(() => console.log("Connected to db"))
+  .then(() => console.log("Connected to database"))
   .catch((error) => console.log(error));
 
 const app = express();
 app.use(cors());
 app.use(express.json());
+const port = 8000;
 
 app.post("/signup", registerUser);
 app.post("/login", loginUser);
-// for all listings
-app.get("/listings", listingsRouter);
 
 app.get("/", (req, res) => {
   res.send("Hello World!");
 });
 
 app.post("/users", authenticateUser, (req, res) => {
-  const userToAdd = req.body;
-  addUser(userToAdd).then((result) => res.status(201).send(result));
+  const newUser = req.body;
+  addUser(newUser).then((result) => res.status(201).send(result));
 });
-
-const port = 8000;
 
 const addUser = (user) => {
   return services.default.addUser(user);
@@ -69,7 +63,7 @@ app.get("/users", (req, res) => {
 });
 
 app.get("/users/:id", (req, res) => {
-  const id = req.params["id"]; // or req.params.id
+  const id = req.params["id"];
   findUserById(id)
     .then((result) => {
       if (result) {
@@ -83,13 +77,12 @@ app.get("/users/:id", (req, res) => {
     });
 });
 
-app.use(cors());
 app.post("/users", (req, res) => {
-  const userToAdd = req.body;
-  addUser(userToAdd)
+  const newUser = req.body;
+  addUser(newUser)
     .then((result) => {
       if (result) {
-        res.status(201).send({ ...userToAdd, _id: result._id });
+        res.status(201).send({ ...newUser, _id: result._id });
       } else {
         res.status(400).send("Error adding user");
       }
@@ -116,6 +109,29 @@ app.delete("/users/:id", (req, res) => {
     });
 });
 
+app.get("/listings/:id", (req, res) => {
+  console.log(req.params.id);
+  listingService.findListingById(req.params.id)
+    .then(listing => {
+      if (!listing) {
+        return res.status(404).json({ message: "Listing not found" });
+      }
+      res.json(listing);
+    })
+    .catch(error => res.status(500).json({ error: "Error fetching listing" }));
+});
+
+app.get("/listings", (req, res) => {
+  listingService.getListings()
+    .then(listings => {
+      res.json(listings);
+    })
+    .catch(error => {
+      console.error("Failed to retrieve listings:", error);
+      res.status(500).json({ message: "Failed to retrieve listings" });
+    });
+});
+
 app.listen(port, () => {
-  console.log(`Example app listening at http://127.0.0.1:${port}`);
+  console.log(`Example app listening at http://localhost:${port}`);
 });
