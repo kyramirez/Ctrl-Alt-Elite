@@ -1,48 +1,47 @@
 .create-container {
-    width: 90%;
-    max-width: 500px;
-    margin: 50px auto;
-    text-align: center;
-    padding: 20px;
-    background: white;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
-  
-  .create-container h1 {
-    margin-bottom: 20px;
-    font-size: 24px;
-  }
-  
-  .create-container form {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-  }
-  
-  .create-container input {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 16px;
-  }
-  
-  .create-container button {
-    padding: 10px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-  }
-  
-  .create-container button[type="submit"] {
-    background-color: #007bff;
-    color: white;
-  }
-  
-  .create-container .back-button {
-    background-color: #ccc;
-    margin-top: 10px;
-  }
-  
+  width: 90%;
+  max-width: 500px;
+  margin: 50px auto;
+  text-align: center;
+  padding: 20px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.create-container h1 {
+  margin-bottom: 20px;
+  font-size: 24px;
+}
+
+.create-container form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.create-container input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.create-container button {
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.create-container button[type="submit"] {
+  background-color: #007bff;
+  color: white;
+}
+
+.create-container .back-button {
+  background-color: #ccc;
+  margin-top: 10px;
+}

@@ -125,12 +125,13 @@ function App() {
           <Route path="/" element={<LandingPage />} />
           <Route path="/singleListingPage" element={<SingleListingPage />} />
           <Route path="/login" element={<Login handleSubmit={loginUser} />} />
-          <Route path="/signUp" element={<Login handleSubmit={signupUser} buttonLabel="Sign Up" />}
+          <Route
+            path="/signUp"
+            element={<Login handleSubmit={signupUser} buttonLabel="Sign Up" />}
           />
           <Route path="/listings" element={<ListingsPage />} />
           <Route path="/account" element={<AccountPage />} />
           <Route path="/create-listing" element={<CreateListingPage />} />
-
         </Routes>
       </div>
     </Router>

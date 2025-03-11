@@ -1,7 +1,7 @@
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 
-const creds = []
+const creds = [];
 
 export function registerUser(req, res) {
   const { username, pwd } = req.body;
@@ -37,7 +37,7 @@ function generateAccessToken(username) {
         } else {
           resolve(token);
         }
-      }
+      },
     );
   });
 }
@@ -50,26 +50,20 @@ export function authenticateUser(req, res, next) {
     console.log("No token received");
     res.status(401).end();
   } else {
-    jwt.verify(
-      token,
-      process.env.TOKEN_SECRET,
-      (error, decoded) => {
-        if (decoded) {
-          next();
-        } else {
-          console.log("JWT error:", error);
-          res.status(401).end();
-        }
+    jwt.verify(token, process.env.TOKEN_SECRET, (error, decoded) => {
+      if (decoded) {
+        next();
+      } else {
+        console.log("JWT error:", error);
+        res.status(401).end();
       }
-    );
+    });
   }
 }
 
 export function loginUser(req, res) {
   const { username, pwd } = req.body;
-  const retrievedUser = creds.find(
-    (c) => c.username === username
-  );
+  const retrievedUser = creds.find((c) => c.username === username);
 
   if (!retrievedUser) {
     res.status(401).send("Unauthorized");
