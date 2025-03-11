@@ -116,6 +116,6 @@ app.delete("/users/:id", (req, res) => {
     });
 });
 
-app.listen(port, () => {
-  console.log(`Example app listening at http://127.0.0.1:${port}`);
+app.listen(process.env.PORT || port, () => {
+  console.log("REST API is listening.");
 });

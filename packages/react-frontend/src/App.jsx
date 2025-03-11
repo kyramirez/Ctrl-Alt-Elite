@@ -16,7 +16,7 @@ function App() {
   const [message, setMessage] = useState("");
 
   function fetchUsers() {
-    const promise = fetch(`http://localhost:8000/users`, {
+    const promise = fetch(`http://freebiefinders-h3dtdeacb5gtc8b0.westus3-01.azurewebsites.net/users`, {
       headers: addAuthHeader(),
     });
 
@@ -35,7 +35,7 @@ function App() {
   }
 
   function loginUser(creds) {
-    const promise = fetch(`http://localhost:8000/login`, {
+    const promise = fetch(`http://freebiefinders-h3dtdeacb5gtc8b0.westus3-01.azurewebsites.net/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -59,7 +59,7 @@ function App() {
   }
 
   function signupUser(creds) {
-    const promise = fetch(`http://localhost:8000/signup`, {
+    const promise = fetch(`http://freebiefinders-h3dtdeacb5gtc8b0.westus3-01.azurewebsites.net/signup`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
