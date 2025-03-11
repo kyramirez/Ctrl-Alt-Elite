@@ -16,7 +16,6 @@
   "main": "index.js",
   "scripts": {
     "format": "prettier --write './**/*.{js,jsx,ts,tsx,css,md,json}' --config ./.prettierrc",
-    "lint": "npx eslint . && npx prettier --check .",
     "test": "echo \"Error: no test specified\"",
     "dev": "nodemon backend.js",
     "start": "node backend.js"
