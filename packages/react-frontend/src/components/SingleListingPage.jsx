@@ -1,11 +1,14 @@
 import { useState, useEffect } from "react";
 import { useParams } from 'react-router-dom'
+import { useNavigate } from "react-router-dom";
+
 
 function SingleListingPage() {
     const { id } = useParams();
     const [listing, setListing] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const navigate = useNavigate();
 
     useEffect(() => {
         fetch(`http://localhost:8000/listings/${id}`)
@@ -31,12 +34,31 @@ function SingleListingPage() {
 
     return (
         <div style={{ display: "Flex", gap: "20PX" }}>
+            <div style={{ display: "Flex", flexDirection: "Column", gap: "10PX" }}>
+                <button 
+                    onClick={() => navigate(-1)}
+                    style={{
+                        padding: "10PX 20PX",
+                        fontSize: "16PX",
+                        backgroundColor: "#007bff",
+                        color: "White",
+                        border: "None",
+                        borderRadius: "5PX",
+                        cursor: "Pointer",
+                        marginBottom: "20PX",
+                        boxShadow: "2PX 2PX 5PX RGBA(0,0,0,0.2)"
+                      }}
+                >
+                    ← Back
+                </button>
+            </div>
+            <div style={{ color: "White" }}>Spacing</div>
             <div>
                 <h1><b>{listing.title}</b></h1>
                 <img 
                     src={listing.images} 
                     alt={listing.title}
-                    style={{ margin: "10PX", borderRadius: "10PX", boxShadow: "4PX 4PX 10PX RGBA(0, 0, 0, 0.2)", border: "2PX Solid Black", maxHeight: "500PX", maxWidth: "500PX" }}>
+                    style={{ margin: "10PX", borderRadius: "10PX", boxShadow: "2PX 2PX 5PX RGBA(0, 0, 0, 0.2)", border: "2PX Solid Black", maxHeight: "500PX", maxWidth: "500PX" }}>
                 </img>
                 <p style={{ margin: "10PX", maxWidth: "500PX" }}>
                     <b>Description: </b>{listing.description}
@@ -44,13 +66,13 @@ function SingleListingPage() {
             </div>
 
             <div style={{ display: "Flex", flexDirection: "Column", gap: "10PX" }}>
-                <button style={{ maxHeight: "100PX", minWidth: "100PX", margin: "10PX", backgroundColor: "Grey", boxShadow: "4PX 4PX 10PX RGBA(0, 0, 0, 0.2)", borderRadius: "10PX" }}>
+                <button style={{ maxHeight: "100PX", minWidth: "100PX", margin: "10PX", backgroundColor: "#007bff", boxShadow: "2PX 2PX 5PX RGBA(0, 0, 0, 0.2)", borderRadius: "5PX" }}>
                     Favorite
                 </button>
-                <button style={{ maxHeight: "100PX", minWidth: "100PX", margin: "10PX", backgroundColor: "Grey", boxShadow: "4PX 4PX 10PX RGBA(0, 0, 0, 0.2)", borderRadius: "10PX" }}>
+                <button style={{ maxHeight: "100PX", minWidth: "100PX", margin: "10PX", backgroundColor: "#007bff", boxShadow: "2PX 2PX 5PX RGBA(0, 0, 0, 0.2)", borderRadius: "5PX" }}>
                     Share
                 </button>
-                <button style={{ maxHeight: "100PX", minWidth: "100PX", margin: "10PX", backgroundColor: "Grey", boxShadow: "4PX 4PX 10PX RGBA(0, 0, 0, 0.2)", borderRadius: "10PX" }}>
+                <button style={{ maxHeight: "100PX", minWidth: "100PX", margin: "10PX", backgroundColor: "#007bff", boxShadow: "2PX 2PX 5PX RGBA(0, 0, 0, 0.2)", borderRadius: "5PX" }}>
                     Flag
                 </button>
             </div>
