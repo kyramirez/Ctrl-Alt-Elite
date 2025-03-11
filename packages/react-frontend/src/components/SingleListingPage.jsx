@@ -36,7 +36,7 @@ function SingleListingPage() {
                 <img 
                     src={listing.images} 
                     alt={listing.title}
-                    style={{ margin: "10PX", borderRadius: "10PX", boxShadow: "4PX 4PX 10PX RGBA(0, 0, 0, 0.2)", border: "2PX Solid Black" }}>
+                    style={{ margin: "10PX", borderRadius: "10PX", boxShadow: "4PX 4PX 10PX RGBA(0, 0, 0, 0.2)", border: "2PX Solid Black", maxHeight: "500PX", maxWidth: "500PX" }}>
                 </img>
                 <p style={{ margin: "10PX", maxWidth: "500PX" }}>
                     <b>Description: </b>{listing.description}

@@ -26,20 +26,20 @@
   border-radius: 50%;
 }
 
-.logo-button {
+.logoButton {
   background: none;
   border: none;
   cursor: pointer;
 }
 
-.profile-button {
+.profileButton {
   background: none;
   border: none;
   cursor: pointer;
 }
 
 
-.profile-button img {
+.profileButton img {
   width: 80px;
   border-radius: 3px;
 }
