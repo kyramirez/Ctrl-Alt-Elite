@@ -2,14 +2,16 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./ListingsPage.css";
 
-function ListingsPage() {
+function ListingsPage(props) {
   const navigate = useNavigate();
   const [listings, setListings] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetch("http://localhost:8000/listings")
+    fetch("http://localhost:8000/listings", {
+      headers: props.addAuthHeader(),
+    })
       .then((response) => {
         if (!response.ok) {
           throw new Error("Failed to fetch listings");

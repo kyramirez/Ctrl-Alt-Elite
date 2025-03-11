@@ -1,12 +1,13 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 function Login(props) {
+  const navigate = useNavigate();
+
   const [creds, setCreds] = useState({
     username: "",
     pwd: "",
   });
-  const navigate = useNavigate();
 
   function handleChange(event) {
     const { name, value } = event.target;
@@ -17,9 +18,9 @@ function Login(props) {
   }
 
   function submitForm() {
-    props.handleSubmit(creds);
+    props.handleSubmit(creds)
     setCreds({ username: "", pwd: "" });
-    navigate("/listings");
+    navigate("/listings")
   }
 
   const formStyle = {
@@ -90,7 +91,7 @@ function Login(props) {
         <input
           type="password"
           name="pwd"
-          id="password"
+          id="pwd"
           value={creds.pwd}
           onChange={handleChange}
           style={inputStyle}

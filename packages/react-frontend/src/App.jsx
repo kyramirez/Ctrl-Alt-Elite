@@ -10,7 +10,6 @@ import CreateListingPage from "./components/CreateListingPage";
 import SingleListingPage from "./components/SingleListingPage.jsx";
 
 function App() {
-  const [characters, setCharacters] = useState([]);
   const INVALID_TOKEN = "INVALID_TOKEN";
   const [token, setToken] = useState(INVALID_TOKEN);
   const [message, setMessage] = useState("");
@@ -18,7 +17,14 @@ function App() {
   function fetchUsers() {
     const promise = fetch(`http://localhost:8000/users`, {
       headers: addAuthHeader(),
-    });
+    })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error(`Error fetching users: ${response.status}`);
+        }
+        return response.json();
+      })
+      .catch(error => console.error("Fetch users error: ", error));
 
     return promise;
   }
@@ -29,33 +35,29 @@ function App() {
     } else {
       return {
         ...otherHeaders,
-        Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${token}`
       };
     }
   }
 
   function loginUser(creds) {
-    const promise = fetch(`http://localhost:8000/login`, {
+    return fetch(`http://localhost:8000/login`, {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify(creds),
     })
-      .then((response) => {
-        if (response.status === 200) {
-          response.json().then((payload) => setToken(payload.token));
-          setMessage(`Login successful; Authentication token saved`);
-          console.log(message);
-        } else {
-          setMessage(`Login Error ${response.status}: ${response.data}`);
+      .then(response => {
+        if (!response.ok) {
+          throw new Error(`Login failed: ${response.status}`);
         }
+        return response.json();
       })
-      .catch((error) => {
-        setMessage(`Login Error: ${error}`);
-      });
-
-    return promise;
+      .then(payload => {
+        setToken(payload.token);
+        setMessage("Login successful; Authentication token saved");
+        console.log(message);
+      })
+      .catch(error => setMessage(`Login Error: ${error.message}`));
   }
 
   function signupUser(creds) {
@@ -83,40 +85,11 @@ function App() {
     return promise;
   }
 
-  function updateList(person) {
-    signupUser(person)
-      .then(() => setCharacters([...characters, person]))
-      .catch((error) => {
-        console.log(error);
-      });
-  }
-
-  useEffect(() => {
-    fetchUsers()
-      .then((res) => (res.status === 200 ? res.json() : undefined))
-      .then((json) => {
-        if (json) {
-          setCharacters(json["users_list"]);
-        } else {
-          setCharacters(null);
-        }
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, []);
-
   useEffect(() => {
     if (message) {
       console.log(message);
     }
   }, [message]);
-
-  // useEffect(() => {
-  //   if (token !== INVALID_TOKEN) {
-  //     navigate("/listings");
-  //   }
-  // }, [token]);
 
   return (
     <Router>
@@ -125,8 +98,8 @@ function App() {
           <Route path="/" element={<LandingPage />} />
           <Route path="/listings/:id" element={<SingleListingPage />} />
           <Route path="/login" element={<Login handleSubmit={loginUser} />} />
-          <Route path="/signUp" element={<Login handleSubmit={signupUser} buttonLabel="Sign Up" />} />
-          <Route path="/listings" element={<ListingsPage />} />
+          <Route path="/signup" element={<Login handleSubmit={signupUser} buttonLabel="Sign Up" />} />
+          <Route path="/listings" element={<ListingsPage addAuthHeader={addAuthHeader}/>} />
           <Route path="/account" element={<AccountPage />} />
           <Route path="/create-listing" element={<CreateListingPage />} />
         </Routes>

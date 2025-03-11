@@ -7,8 +7,8 @@ function LandingPage() {
     navigate("/login");
   };
 
-  const handleSignUpClick = () => {
-    navigate("/signUp");
+  const handleSignupClick = () => {
+    navigate("/signup");
   };
 
   return (
@@ -27,7 +27,7 @@ function LandingPage() {
           fontSize: "20PX",
           boxShadow: "4PX 4PX 10PX RGBA(0, 0, 0, 0.2)",
         }}
-        onClick={handleSignUpClick}
+        onClick={handleSignupClick}
       >
         <b>Sign Up</b>
       </button>
