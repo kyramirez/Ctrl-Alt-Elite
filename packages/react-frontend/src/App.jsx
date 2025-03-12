@@ -91,7 +91,7 @@ function App() {
   }
 
   useEffect(() => {
-    if (token !== "INVALID TOKEN") {
+    if (token !== "INVALID_TOKEN") {
       console.log("Updated token:", token);
     }
   }, [token]);
