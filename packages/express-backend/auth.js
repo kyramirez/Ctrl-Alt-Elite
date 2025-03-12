@@ -46,7 +46,7 @@ export function loginUser(req, res) {
           }
 
           return tokenGenerater(user.username)
-            .then(token => res.status(200).send({ token: token }));
+            .then(token => res.status(200).send({ token: token, username: username, pwd: pwd}));
         });
     })
     .catch(error => res.status(500).send("Error logging in: " + error.message));

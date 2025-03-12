@@ -27,9 +27,22 @@ function delUserById(id) {
   return User.deleteOne({ _id: id });
 }
 
+function getUserId(username) {
+  return User.findOne({ username })
+    .then(user => {
+      if (!user) throw new Error("User not found");
+      return user._id;
+    })
+    .catch(error => {
+      console.error("Error fetching userId: ", error.message);
+      return null;
+    });
+}
+
 export default {
   addUser,
   getUsers,
   findUserById,
   delUserById,
+  getUserId,
 };

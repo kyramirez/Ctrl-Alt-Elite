@@ -1,8 +1,15 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 function Login(props) {
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (props.token !== "INVALID_TOKEN") {
+      console.log("Updated token: ", props.token)
+      navigate("/listings");
+    }
+  }, [props.token, navigate])
 
   const [creds, setCreds] = useState({
     username: "",
@@ -18,9 +25,10 @@ function Login(props) {
   }
 
   function submitForm() {
+    console.log("Button was clicked.")
+    console.log("Login.jsx is sending creds: ", creds)
     props.handleSubmit(creds)
     setCreds({ username: "", pwd: "" });
-    navigate("/listings")
   }
 
   const formStyle = {

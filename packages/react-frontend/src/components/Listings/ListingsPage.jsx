@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./ListingsPage.css";
 
-function ListingsPage(props) {
+function ListingsPage({ addAuthHeader }) {
   const navigate = useNavigate();
   const [listings, setListings] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -10,7 +10,7 @@ function ListingsPage(props) {
 
   useEffect(() => {
     fetch("http://localhost:8000/listings", {
-      headers: props.addAuthHeader(),
+      headers: addAuthHeader(),
     })
       .then((response) => {
         if (!response.ok) {
@@ -26,7 +26,7 @@ function ListingsPage(props) {
         setError(err.message);
         setLoading(false);
       });
-  }, []);
+  }, [addAuthHeader]);
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error}</p>
@@ -34,18 +34,40 @@ function ListingsPage(props) {
   return (
     <div className="container">
       <header className="header">
-        <button className="logoButton" onClick={() => navigate("/")}>
-          <img src="https://files.oaiusercontent.com/file-P9PjxQMzdT7DTBq2Bwyoyk?se=2025-03-11T00%3A08%3A06Z&sp=r&sv=2024-08-04&sr=b&rscc=max-age%3D604800%2C%20immutable%2C%20private&rscd=attachment%3B%20filename%3D52b88db3-2250-4d71-97e8-e066924c714e.webp&sig=pl63OSF5zCRekmTWWr2EVOtuA2bAE56g4uDA58S7tDE%3D" alt="Logo" className="logo" />
+        <button 
+            onClick={() => navigate("/")}
+            style={{
+                padding: "10PX 20PX",
+                fontSize: "16PX",
+                backgroundColor: "#007bff",
+                color: "White",
+                border: "None",
+                borderRadius: "5PX",
+                cursor: "Pointer",
+                marginBottom: "20PX",
+                boxShadow: "2PX 2PX 5PX RGBA(0,0,0,0.2)"
+              }}
+        >
+            Home
         </button>
-        <button className="profileButton" onClick={() => navigate("/account")}>
-          <img
-            src="https://images.unsplash.com/photo-1511367461989-f85a21fda167?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8cHJvZmlsZSUyMGljb258ZW58MHx8MHx8fDI%3D"
-            alt="Profile"
-          />
+        <button 
+            onClick={() => navigate("/account")}
+            style={{
+                padding: "10PX 20PX",
+                fontSize: "16PX",
+                backgroundColor: "#007bff",
+                color: "White",
+                border: "None",
+                borderRadius: "5PX",
+                cursor: "Pointer",
+                marginBottom: "20PX",
+                boxShadow: "2PX 2PX 5PX RGBA(0,0,0,0.2)"
+              }}
+        >
+            Account
         </button>
       </header>
 
-      <h1><b>All Listings</b></h1>
       <div className="listingsGrid">
         {listings.map((listing) => (
           <div

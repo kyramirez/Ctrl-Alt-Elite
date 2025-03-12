@@ -5,6 +5,7 @@ import dotenv from "dotenv";
 import * as services from "./services/user-service.js";
 import { registerUser, loginUser, authenticateUser } from "./auth.js";
 import listingService from "./services/listing-service.js";
+import { User, Listing } from "./models/user.js";
 
 dotenv.config();
 
@@ -121,14 +122,48 @@ app.get("/listings/:id", (req, res) => {
     .catch(error => res.status(500).json({ error: "Error fetching listing" }));
 });
 
-app.get("/listings", (req, res) => {
+app.get("/listings", authenticateUser, (req, res) => {
   listingService.getListings()
     .then(listings => {
       res.json(listings);
     })
     .catch(error => {
-      console.error("Failed to retrieve listings:", error);
+      console.error("Failed to retrieve listings: ", error);
       res.status(500).json({ message: "Failed to retrieve listings" });
+    });
+});
+
+app.post("/listings", (req, res) => {
+  const { title, description, category, location, images, postedBy } = req.body;
+
+  console.log("Received body:", req.body);
+  
+  User.findOne({ username: String(postedBy) })
+    .then(user => {
+      if (!user) {
+        console.log(`User not found: ${postedBy}`);
+        return res.status(404).json({ error: "User not found" });
+      }
+
+      console.log("Found user:", user);
+      const newListing = new Listing({
+        title,
+        description,
+        category,
+        location,
+        images,
+        postedBy: user._id,
+      });
+
+      return newListing.save();
+    })
+    .then(savedListing => {
+      console.log("Saved listing:", savedListing);
+      res.status(201).json({ message: "Listing created successfully", listing: savedListing });
+    })
+    .catch(error => {
+      console.error("Error creating listing: ", error);
+      res.status(500).json({ error: "Server error" });
     });
 });
 

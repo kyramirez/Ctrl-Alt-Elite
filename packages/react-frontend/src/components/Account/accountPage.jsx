@@ -51,15 +51,6 @@ function AccountPage() {
           <h2 className="profile-info">Full Name</h2>
         </div>
 
-        {/* Star Rating (Directly Under Profile Picture) */}
-        <div className="star-rating">
-          <span className="star">★</span>
-          <span className="star">★</span>
-          <span className="star">★</span>
-          <span className="star">★</span>
-          <span className="star">★</span>
-        </div>
-
         {/* Centered Bio & Edit Profile Button */}
         <div className="profile-actions">
           <p className="bio">Space for bio</p>

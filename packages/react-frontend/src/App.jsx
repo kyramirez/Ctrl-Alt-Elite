@@ -8,11 +8,13 @@ import ListingsPage from "./components/Listings/ListingsPage.jsx";
 import AccountPage from "./components/Account/accountPage.jsx";
 import CreateListingPage from "./components/CreateListingPage";
 import SingleListingPage from "./components/SingleListingPage.jsx";
+import { useNavigate } from "react-router-dom";
 
 function App() {
   const INVALID_TOKEN = "INVALID_TOKEN";
   const [token, setToken] = useState(INVALID_TOKEN);
   const [message, setMessage] = useState("");
+  const [creds, setCreds] = useState("");
 
   function fetchUsers() {
     const promise = fetch(`http://localhost:8000/users`, {
@@ -41,21 +43,23 @@ function App() {
   }
 
   function loginUser(creds) {
+    console.log("App.jsx has received creds: ", creds);
+    setCreds(creds.username);
     return fetch(`http://localhost:8000/login`, {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: { "Content-type": "application/json" },
       body: JSON.stringify(creds),
     })
       .then(response => {
         if (!response.ok) {
           throw new Error(`Login failed: ${response.status}`);
         }
+        console.log("App.jsx has received a response.")
         return response.json();
       })
       .then(payload => {
         setToken(payload.token);
         setMessage("Login successful; Authentication token saved");
-        console.log(message);
       })
       .catch(error => setMessage(`Login Error: ${error.message}`));
   }
@@ -64,7 +68,7 @@ function App() {
     const promise = fetch(`http://localhost:8000/signup`, {
       method: "POST",
       headers: {
-        "Content-Type": "application/json",
+        "Content-type": "application/json",
       },
       body: JSON.stringify(creds),
     })
@@ -86,10 +90,10 @@ function App() {
   }
 
   useEffect(() => {
-    if (message) {
-      console.log(message);
+    if (token !== "INVALID TOKEN") {
+      console.log("Updated token:", token);
     }
-  }, [message]);
+  }, [token]);
 
   return (
     <Router>
@@ -97,11 +101,11 @@ function App() {
         <Routes>
           <Route path="/" element={<LandingPage />} />
           <Route path="/listings/:id" element={<SingleListingPage />} />
-          <Route path="/login" element={<Login handleSubmit={loginUser} />} />
+          <Route path="/login" element={<Login handleSubmit={loginUser} token={token} />} />
           <Route path="/signup" element={<Login handleSubmit={signupUser} buttonLabel="Sign Up" />} />
-          <Route path="/listings" element={<ListingsPage addAuthHeader={addAuthHeader}/>} />
+          <Route path="/listings" element={<ListingsPage addAuthHeader={addAuthHeader} />} />
           <Route path="/account" element={<AccountPage />} />
-          <Route path="/create-listing" element={<CreateListingPage />} />
+          <Route path="/create-listing" element={<CreateListingPage creds={creds}/>} />
         </Routes>
       </div>
     </Router>
