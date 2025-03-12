@@ -16,9 +16,12 @@ function App() {
   const [message, setMessage] = useState("");
 
   function fetchUsers() {
-    const promise = fetch(`http://freebiefinders-h3dtdeacb5gtc8b0.westus3-01.azurewebsites.net/users`, {
-      headers: addAuthHeader(),
-    });
+    const promise = fetch(
+      `http://freebiefinders-h3dtdeacb5gtc8b0.westus3-01.azurewebsites.net/users`,
+      {
+        headers: addAuthHeader(),
+      },
+    );
 
     return promise;
   }
@@ -35,13 +38,16 @@ function App() {
   }
 
   function loginUser(creds) {
-    const promise = fetch(`http://freebiefinders-h3dtdeacb5gtc8b0.westus3-01.azurewebsites.net/login`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
+    const promise = fetch(
+      `http://freebiefinders-h3dtdeacb5gtc8b0.westus3-01.azurewebsites.net/login`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(creds),
       },
-      body: JSON.stringify(creds),
-    })
+    )
       .then((response) => {
         if (response.status === 200) {
           response.json().then((payload) => setToken(payload.token));
@@ -59,13 +65,16 @@ function App() {
   }
 
   function signupUser(creds) {
-    const promise = fetch(`http://freebiefinders-h3dtdeacb5gtc8b0.westus3-01.azurewebsites.net/signup`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
+    const promise = fetch(
+      `http://freebiefinders-h3dtdeacb5gtc8b0.westus3-01.azurewebsites.net/signup`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(creds),
       },
-      body: JSON.stringify(creds),
-    })
+    )
       .then((response) => {
         if (response.status === 201) {
           response.json().then((payload) => setToken(payload.token));

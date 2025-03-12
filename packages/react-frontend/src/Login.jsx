@@ -28,9 +28,9 @@ function Login(props) {
 
   // Styles
   const containerStyle = {
-    background: "linear-gradient(to right, #a1c4fd, #c2e9fb)", 
+    background: "linear-gradient(to right, #a1c4fd, #c2e9fb)",
     height: "100vh",
-    width: "80vw", 
+    width: "80vw",
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
@@ -41,7 +41,7 @@ function Login(props) {
     padding: "20px",
     borderRadius: "10px",
     backgroundColor: "#ffffff",
-    boxShadow: "4px 4px 15px rgba(0, 0, 0, 0.2)", 
+    boxShadow: "4px 4px 15px rgba(0, 0, 0, 0.2)",
     textAlign: "center",
   };
 

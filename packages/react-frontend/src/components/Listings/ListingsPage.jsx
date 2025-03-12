@@ -42,7 +42,6 @@ const sampleListings = [
   },
 ];
 
-
 function ListingsPage() {
   const navigate = useNavigate();
 
@@ -65,7 +64,9 @@ function ListingsPage() {
         {sampleListings.map((listing, index) => (
           <div key={index} className="listingCard">
             <img src={listing.imageUrl} alt={listing.title} />
-            <div className="listingTitle">{listing.title} - {listing.date}</div>
+            <div className="listingTitle">
+              {listing.title} - {listing.date}
+            </div>
           </div>
         ))}
       </div>
