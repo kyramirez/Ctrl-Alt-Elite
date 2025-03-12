@@ -100,11 +100,11 @@ function App() {
     <Router>
       <div>
         <Routes>
-          <Route path="/" element={<LandingPage />} />
+          <Route path="/" element={<LandingPage token={token}/>} />
           <Route path="/listings/:id" element={<SingleListingPage />} />
           <Route path="/login" element={<Login handleSubmit={loginUser} token={token} />} />
           <Route path="/signup" element={<Login handleSubmit={signupUser} buttonLabel="Sign Up" token={token} />} />
-          <Route path="/listings" element={<ListingsPage addAuthHeader={addAuthHeader} />} />
+          <Route path="/listings" element={<ListingsPage addAuthHeader={addAuthHeader} resetToken={setToken} />} />
           <Route path="/account" element={<AccountPage creds={creds} />} />
           <Route path="/create-listing" element={<CreateListingPage creds={creds}/>} />
         </Routes>

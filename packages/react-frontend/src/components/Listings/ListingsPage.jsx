@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./ListingsPage.css";
 
-function ListingsPage({ addAuthHeader }) {
+function ListingsPage({ addAuthHeader, resetToken }) {
   const navigate = useNavigate();
   const [listings, setListings] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -31,11 +31,16 @@ function ListingsPage({ addAuthHeader }) {
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error}</p>
 
+  function handleLogout() {
+    resetToken("INVALID_TOKEN");
+    navigate("/");
+  }
+
   return (
     <div className="container">
       <header className="header">
         <button 
-            onClick={() => navigate("/")}
+            onClick={handleLogout}
             style={{
                 padding: "10PX 20PX",
                 fontSize: "16PX",
@@ -48,7 +53,7 @@ function ListingsPage({ addAuthHeader }) {
                 boxShadow: "2PX 2PX 5PX RGBA(0,0,0,0.2)"
               }}
         >
-            Home
+            Logout
         </button>
         <button 
             onClick={() => navigate("/account")}

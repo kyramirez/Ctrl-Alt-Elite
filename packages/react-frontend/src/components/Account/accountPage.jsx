@@ -70,9 +70,25 @@ function AccountPage(props) {
         <button className="add-item-btn" onClick={() => navigate("/create-listing")}>
         +
         </button>
+        <button 
+            onClick={() => navigate("/listings")}
+            style={{
+                padding: "10PX 20PX",
+                fontSize: "16PX",
+                backgroundColor: "#007bff",
+                color: "White",
+                border: "None",
+                borderRadius: "5PX",
+                cursor: "Pointer",
+                marginBottom: "20PX",
+                boxShadow: "2PX 2PX 5PX RGBA(0,0,0,0.2)"
+              }}
+        >
+            ← Back
+        </button>
         {/* Avatar and Full Name in the same row */}
         <div className="profile-header">
-          <h2 className="profile-info">{props.creds}</h2>
+          <h2 className="profile-info">Username: {props.creds}</h2>
         </div>
 
         {/* Centered Bio & Edit Profile Button */}
