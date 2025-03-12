@@ -162,12 +162,10 @@ app.post("/listings", (req, res) => {
     })
     .then((savedListing) => {
       console.log("Saved listing:", savedListing);
-      res
-        .status(201)
-        .json({
-          message: "Listing created successfully",
-          listing: savedListing,
-        });
+      res.status(201).json({
+        message: "Listing created successfully",
+        listing: savedListing,
+      });
     })
     .catch((error) => {
       console.error("Error creating listing: ", error);
