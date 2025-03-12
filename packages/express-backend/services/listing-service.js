@@ -1,25 +1,30 @@
 import { Listing } from "../models/user.js";
 
 function getListings() {
-    return Listing.find({});
+  return Listing.find({});
 }
 
 function findListingById(id) {
-    return Listing.findById(id);
+  return Listing.findById(id);
 }
 
 function updateListingById(id, updatedData) {
-    return Listing.findByIdAndUpdate(id, updatedData, { new: true });
+  return Listing.findByIdAndUpdate(id, updatedData, { new: true });
 }
 
 function addListing(listingData) {
-    const newListing = new Listing(listingData);
-    return newListing.save();
+  const newListing = new Listing(listingData);
+  return newListing.save();
+}
+
+function delListingById(id) {
+  return Listing.findByIdAndDelete(id, []);
 }
 
 export default {
-    getListings,
-    findListingById,
-    updateListingById,
-    addListing,
+  getListings,
+  findListingById,
+  updateListingById,
+  addListing,
+  delListingById,
 };
