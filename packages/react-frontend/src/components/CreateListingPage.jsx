@@ -1,17 +1,56 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./CreateListingPage.css";
 
-function CreateListingPage() {
+function CreateListingPage(props) {
   const navigate = useNavigate();
   const [title, setTitle] = useState("");
-  const [imageUrl, setImageUrl] = useState("");
+  const [description, setDescription] = useState("");
+  const [category, setCategory] = useState("")
+  const [images, setImages] = useState(""); 
+  const [location, setLocation] = useState("");
+  const [postedBy, setPostedBy] = useState("");
+  const [error, setError] = useState(null);
 
-  const handleSubmit = (e) => {
+  useEffect(() => {
+    if (props.creds !== "") {
+      setPostedBy(props.creds);
+    }
+  }, [props.creds]);
+  
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("New Listing Created:", { title, imageUrl });
+  
+    const newListing = {
+      title,
+      description,
+      category,
+      location,
+      images,
+      postedBy,
+    };
 
-    navigate("/account");
+    try {
+      console.log("Sending data: ", newListing);
+      const response = fetch("http://localhost:8000/listings", {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+        },
+        body: JSON.stringify(newListing),
+      });
+
+      if (!response.ok) {
+        throw new Error(`Failed to create listing: ${(await response).status}`);
+      }
+
+      const data = await response.json();
+      console.log("New listing created: ", data);
+      navigate("/account");
+    } catch (err) {
+      console.error("Error: ", err);
+      setError(err.message);
+    } 
   };
 
   return (
@@ -20,19 +59,40 @@ function CreateListingPage() {
       <form onSubmit={handleSubmit}>
         <input
           type="text"
-          placeholder="Listing Title"
+          placeholder="Listing title"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
           required
         />
         <input
           type="text"
-          placeholder="Image URL"
-          value={imageUrl}
-          onChange={(e) => setImageUrl(e.target.value)}
+          placeholder="Description"
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
           required
         />
-        <button type="submit">Submit Listing</button>
+        <input
+          type="text"
+          placeholder="Category"
+          value={category}
+          onChange={(e) => setCategory(e.target.value)}
+          required
+        />
+        <input
+          type="text"
+          placeholder="Image URL"
+          value={images}
+          onChange={(e) => setImages(e.target.value)}
+          required
+        />
+        <input
+          type="text"
+          placeholder="Location"
+          value={location}
+          onChange={(e) => setLocation(e.target.value)}
+          required
+        />
+        <button type="submit" onClick={() => navigate("/account")}>Submit Listing</button>
       </form>
       <button className="back-button" onClick={() => navigate("/account")}>
         Cancel

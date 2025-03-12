@@ -1,42 +1,37 @@
-// backend.js
 import express from "express";
 import cors from "cors";
-import * as services from "./services/user-service.js";
-import dotenv from "dotenv";
-import { registerUser, loginUser, authenticateUser } from "./auth.js";
 import mongoose from "mongoose";
-import listingsRouter from "./routes/listings_route.js";
+import dotenv from "dotenv";
+import * as services from "./services/user-service.js";
+import { registerUser, loginUser, authenticateUser } from "./auth.js";
+import listingService from "./services/listing-service.js";
+import { User, Listing } from "./models/user.js";
 
 dotenv.config();
 
 mongoose.set("debug", true);
 mongoose
   .connect(process.env.MONGO_CONNECTION_STRING + "freebieDB", {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
   })
-  .then(() => console.log("Connected to db"))
+  .then(() => console.log("Connected to database"))
   .catch((error) => console.log(error));
 
 const app = express();
 app.use(cors());
 app.use(express.json());
+const port = 8000;
 
 app.post("/signup", registerUser);
 app.post("/login", loginUser);
-// for all listings
-app.get("/listings", listingsRouter);
 
 app.get("/", (req, res) => {
   res.send("Hello World!");
 });
 
 app.post("/users", authenticateUser, (req, res) => {
-  const userToAdd = req.body;
-  addUser(userToAdd).then((result) => res.status(201).send(result));
+  const newUser = req.body;
+  addUser(newUser).then((result) => res.status(201).send(result));
 });
-
-const port = 8000;
 
 const addUser = (user) => {
   return services.default.addUser(user);
@@ -69,7 +64,7 @@ app.get("/users", (req, res) => {
 });
 
 app.get("/users/:id", (req, res) => {
-  const id = req.params["id"]; // or req.params.id
+  const id = req.params["id"];
   findUserById(id)
     .then((result) => {
       if (result) {
@@ -83,13 +78,12 @@ app.get("/users/:id", (req, res) => {
     });
 });
 
-app.use(cors());
 app.post("/users", (req, res) => {
-  const userToAdd = req.body;
-  addUser(userToAdd)
+  const newUser = req.body;
+  addUser(newUser)
     .then((result) => {
       if (result) {
-        res.status(201).send({ ...userToAdd, _id: result._id });
+        res.status(201).send({ ...newUser, _id: result._id });
       } else {
         res.status(400).send("Error adding user");
       }
@@ -116,6 +110,88 @@ app.delete("/users/:id", (req, res) => {
     });
 });
 
-app.listen(process.env.PORT || port, () => {
-  console.log("REST API is listening.");
+app.get("/listings/:id", (req, res) => {
+  console.log(req.params.id);
+  listingService.findListingById(req.params.id)
+    .then(listing => {
+      if (!listing) {
+        return res.status(404).json({ message: "Listing not found" });
+      }
+      res.json(listing);
+    })
+    .catch(error => res.status(500).json({ error: "Error fetching listing" }));
+});
+
+app.get("/listings", authenticateUser, (req, res) => {
+  listingService.getListings()
+    .then(listings => {
+      res.json(listings);
+    })
+    .catch(error => {
+      console.error("Failed to retrieve listings: ", error);
+      res.status(500).json({ message: "Failed to retrieve listings" });
+    });
+});
+
+app.post("/listings", (req, res) => {
+  const { title, description, category, location, images, postedBy } = req.body;
+
+  console.log("Received body:", req.body);
+  
+  User.findOne({ username: String(postedBy) })
+    .then(user => {
+      if (!user) {
+        console.log(`User not found: ${postedBy}`);
+        return res.status(404).json({ error: "User not found" });
+      }
+
+      console.log("Found user:", user);
+      const newListing = new Listing({
+        title,
+        description,
+        category,
+        location,
+        images,
+        postedBy: user._id,
+      });
+
+      return newListing.save();
+    })
+    .then(savedListing => {
+      console.log("Saved listing:", savedListing);
+      res.status(201).json({ message: "Listing created successfully", listing: savedListing });
+    })
+    .catch(error => {
+      console.error("Error creating listing: ", error);
+      res.status(500).json({ error: "Server error" });
+    });
+});
+
+app.get("/listings/user/:username", (req, res) => {
+  const { username } = req.params;
+
+  User.findOne({ username })
+    .then(user => {
+      if (!user) {
+        return res.status(404).json({ error: "User not found" });
+      }
+
+      console.log("Found user: ", user);
+
+      return Listing.find({ postedBy: user._id });
+    })
+    .then(listings => {
+      if (!listings.length) {
+        return res.status(404).json({ message: "No listings found for this user" });
+      }
+      res.json(listings);
+    })
+    .catch(error => {
+      console.error("Error fetching user listings: ", error);
+      res.status(500).json({ error: "Server error" });
+    });
+});
+
+app.listen(port, () => {
+  console.log(`Example app listening at http://localhost:${port}`);
 });

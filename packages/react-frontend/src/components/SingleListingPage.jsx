@@ -1,101 +1,78 @@
+import { useState, useEffect } from "react";
+import { useParams } from 'react-router-dom'
+import { useNavigate } from "react-router-dom";
+
+
 function SingleListingPage() {
-  return (
-    <div style={{ display: "Flex", gap: "20PX" }}>
-      <div>
-        <h1>
-          <b>Work Desk</b>
-        </h1>
-        <img
-          src="https://tinyurl.com/y2fxfudz"
-          alt="Work Desk"
-          style={{
-            margin: "10PX",
-            borderRadius: "10PX",
-            boxShadow: "4PX 4PX 10PX RGBA(0, 0, 0, 0.2)",
-            border: "2PX Solid Black",
-          }}
-        ></img>
-        <p style={{ margin: "10PX", maxWidth: "500PX" }}>
-          <b>Description: </b>My name is Brady. Looking to sell a one-year-old
-          desk that has minimal scratches. Perfect for remote work or studying.
-          Contact me if you are interested.
-        </p>
-      </div>
+    const { id } = useParams();
+    const [listing, setListing] = useState(null);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+    const navigate = useNavigate();
 
-      <div style={{ display: "Flex", flexDirection: "Column", gap: "10PX" }}>
-        <button
-          style={{
-            maxHeight: "100PX",
-            minWidth: "100PX",
-            margin: "10PX",
-            backgroundColor: "Grey",
-            boxShadow: "4PX 4PX 10PX RGBA(0, 0, 0, 0.2)",
-            borderRadius: "10PX",
-          }}
-        >
-          Favorite
-        </button>
-        <button
-          style={{
-            maxHeight: "100PX",
-            minWidth: "100PX",
-            margin: "10PX",
-            backgroundColor: "Grey",
-            boxShadow: "4PX 4PX 10PX RGBA(0, 0, 0, 0.2)",
-            borderRadius: "10PX",
-          }}
-        >
-          Share
-        </button>
-        <button
-          style={{
-            maxHeight: "100PX",
-            minWidth: "100PX",
-            margin: "10PX",
-            backgroundColor: "Grey",
-            boxShadow: "4PX 4PX 10PX RGBA(0, 0, 0, 0.2)",
-            borderRadius: "10PX",
-          }}
-        >
-          Flag
-        </button>
-      </div>
+    useEffect(() => {
+        fetch(`http://localhost:8000/listings/${id}`)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("Failed to fetch listing");
+                }
+                return response.json();
+            })
+            .then(data => {
+                setListing(data);
+                setLoading(false);
+            })
+            .catch(err => {
+                setError(err);
+                setLoading(false);
+            });
+    }, [id]);
 
-      <div
-        style={{
-          display: "Flex",
-          flexDirection: "Column",
-          gap: "10PX",
-          textAlign: "Left",
-        }}
-      >
-        <img
-          src="https://tinyurl.com/y4kj9y3m"
-          alt="Google Map"
-          style={{
-            margin: "10PX",
-            borderRadius: "10PX",
-            boxShadow: "4PX 4PX 10PX RGBA(0, 0, 0, 0.2)",
-            border: "2PX Solid Black",
-            maxHeight: "400PX",
-            maxWidth: "400PX",
-          }}
-        ></img>
-        <p style={{ margin: "10PX", fontSize: "20PX" }}>
-          <b>Posted: </b>13 Minutes Ago
-        </p>
-        <p style={{ margin: "10PX", fontSize: "20PX" }}>
-          <b>Condition: </b>Excellent
-        </p>
-        <p style={{ margin: "10PX", fontSize: "20PX" }}>
-          <b>Make/Manufacturer: </b>KKL
-        </p>
-        <p style={{ margin: "10PX", fontSize: "20PX" }}>
-          <b>Size/Dimensions: </b>98.00 x 38.70 x 66.10 Centimeters
-        </p>
-      </div>
-    </div>
-  );
+    if (loading) return <p>Loading...</p>;
+    if (error) return <p>Error: {error}</p>;
+    if (!listing) return <p>No listing found.</p>;
+
+    return (
+        <div style={{ display: "Flex", gap: "20PX" }}>
+            <div style={{ display: "Flex", flexDirection: "Column", gap: "10PX" }}>
+                <button 
+                    onClick={() => navigate(-1)}
+                    style={{
+                        padding: "10PX 20PX",
+                        fontSize: "16PX",
+                        backgroundColor: "#007bff",
+                        color: "White",
+                        border: "None",
+                        borderRadius: "5PX",
+                        cursor: "Pointer",
+                        marginBottom: "20PX",
+                        boxShadow: "2PX 2PX 5PX RGBA(0,0,0,0.2)"
+                      }}
+                >
+                    ← Back
+                </button>
+            </div>
+            <div style={{ color: "White" }}>Spacing</div>
+            <div>
+                <h1><b>{listing.title}</b></h1>
+                <img 
+                    src={listing.images} 
+                    alt={listing.title}
+                    style={{ margin: "10PX", borderRadius: "10PX", boxShadow: "2PX 2PX 5PX RGBA(0, 0, 0, 0.2)", border: "2PX Solid Black", maxHeight: "500PX", maxWidth: "500PX" }}>
+                </img>
+                <p style={{ margin: "10PX", maxWidth: "500PX" }}>
+                    <b>Description: </b>{listing.description}
+                </p>
+            </div>
+
+            <div style={{ display: "Flex", flexDirection: "Column", gap: "10PX", textAlign: "Left" }}>
+                <p style={{ margin: "10PX", fontSize: "20PX" }}><b>Posted: </b>{new Date(listing.createdAt).toLocaleString()}</p>
+                <p style={{ margin: "10PX", fontSize: "20PX" }}><b>Location: </b>{listing.location}</p>
+                <p style={{ margin: "10PX", fontSize: "20PX" }}><b>Category: </b>{listing.category}</p>
+            </div>
+        </div>
+    );
 }
+
 
 export default SingleListingPage;
