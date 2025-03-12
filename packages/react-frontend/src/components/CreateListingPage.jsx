@@ -6,8 +6,8 @@ function CreateListingPage(props) {
   const navigate = useNavigate();
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  const [category, setCategory] = useState("")
-  const [images, setImages] = useState(""); 
+  const [category, setCategory] = useState("");
+  const [images, setImages] = useState("");
   const [location, setLocation] = useState("");
   const [postedBy, setPostedBy] = useState("");
   const [error, setError] = useState(null);
@@ -17,10 +17,10 @@ function CreateListingPage(props) {
       setPostedBy(props.creds);
     }
   }, [props.creds]);
-  
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-  
+
     const newListing = {
       title,
       description,
@@ -50,7 +50,7 @@ function CreateListingPage(props) {
     } catch (err) {
       console.error("Error: ", err);
       setError(err.message);
-    } 
+    }
   };
 
   return (
@@ -92,7 +92,9 @@ function CreateListingPage(props) {
           onChange={(e) => setLocation(e.target.value)}
           required
         />
-        <button type="submit" onClick={() => navigate("/account")}>Submit Listing</button>
+        <button type="submit" onClick={() => navigate("/account")}>
+          Submit Listing
+        </button>
       </form>
       <button className="back-button" onClick={() => navigate("/account")}>
         Cancel

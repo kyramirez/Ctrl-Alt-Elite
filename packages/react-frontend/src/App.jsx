@@ -20,13 +20,13 @@ function App() {
     const promise = fetch(`http://localhost:8000/users`, {
       headers: addAuthHeader(),
     })
-      .then(response => {
+      .then((response) => {
         if (!response.ok) {
           throw new Error(`Error fetching users: ${response.status}`);
         }
         return response.json();
       })
-      .catch(error => console.error("Fetch users error: ", error));
+      .catch((error) => console.error("Fetch users error: ", error));
 
     return promise;
   }
@@ -37,7 +37,7 @@ function App() {
     } else {
       return {
         ...otherHeaders,
-        Authorization: `Bearer ${token}`
+        Authorization: `Bearer ${token}`,
       };
     }
   }
@@ -50,18 +50,18 @@ function App() {
       headers: { "Content-type": "application/json" },
       body: JSON.stringify(creds),
     })
-      .then(response => {
+      .then((response) => {
         if (!response.ok) {
           throw new Error(`Login failed: ${response.status}`);
         }
-        console.log("App.jsx has received a response.")
+        console.log("App.jsx has received a response.");
         return response.json();
       })
-      .then(payload => {
+      .then((payload) => {
         setToken(payload.token);
         setMessage("Login successful; Authentication token saved");
       })
-      .catch(error => setMessage(`Login Error: ${error.message}`));
+      .catch((error) => setMessage(`Login Error: ${error.message}`));
   }
 
   function signupUser(creds) {
@@ -100,13 +100,36 @@ function App() {
     <Router>
       <div>
         <Routes>
-          <Route path="/" element={<LandingPage token={token}/>} />
+          <Route path="/" element={<LandingPage token={token} />} />
           <Route path="/listings/:id" element={<SingleListingPage />} />
-          <Route path="/login" element={<Login handleSubmit={loginUser} token={token} />} />
-          <Route path="/signup" element={<Login handleSubmit={signupUser} buttonLabel="Sign Up" token={token} />} />
-          <Route path="/listings" element={<ListingsPage addAuthHeader={addAuthHeader} resetToken={setToken} />} />
+          <Route
+            path="/login"
+            element={<Login handleSubmit={loginUser} token={token} />}
+          />
+          <Route
+            path="/signup"
+            element={
+              <Login
+                handleSubmit={signupUser}
+                buttonLabel="Sign Up"
+                token={token}
+              />
+            }
+          />
+          <Route
+            path="/listings"
+            element={
+              <ListingsPage
+                addAuthHeader={addAuthHeader}
+                resetToken={setToken}
+              />
+            }
+          />
           <Route path="/account" element={<AccountPage creds={creds} />} />
-          <Route path="/create-listing" element={<CreateListingPage creds={creds}/>} />
+          <Route
+            path="/create-listing"
+            element={<CreateListingPage creds={creds} />}
+          />
         </Routes>
       </div>
     </Router>

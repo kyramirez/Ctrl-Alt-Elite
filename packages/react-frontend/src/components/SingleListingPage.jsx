@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
-function SingleListingPage(props) {
+function SingleListingPage() {
   const { id } = useParams();
   const [listing, setListing] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -122,5 +122,6 @@ function SingleListingPage(props) {
     </div>
   );
 }
+
 
 export default SingleListingPage;

@@ -29,7 +29,7 @@ function ListingsPage({ addAuthHeader, resetToken }) {
   }, [addAuthHeader]);
 
   if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error: {error}</p>
+  if (error) return <p>Error: {error}</p>;
 
   function handleLogout() {
     resetToken("INVALID_TOKEN");
@@ -39,47 +39,47 @@ function ListingsPage({ addAuthHeader, resetToken }) {
   return (
     <div className="container">
       <header className="header">
-        <button 
-            onClick={handleLogout}
-            style={{
-                padding: "10PX 20PX",
-                fontSize: "16PX",
-                backgroundColor: "#007bff",
-                color: "White",
-                border: "None",
-                borderRadius: "5PX",
-                cursor: "Pointer",
-                marginBottom: "20PX",
-                boxShadow: "2PX 2PX 5PX RGBA(0,0,0,0.2)"
-              }}
+        <button
+          onClick={handleLogout}
+          style={{
+            padding: "10PX 20PX",
+            fontSize: "16PX",
+            backgroundColor: "#007bff",
+            color: "White",
+            border: "None",
+            borderRadius: "5PX",
+            cursor: "Pointer",
+            marginBottom: "20PX",
+            boxShadow: "2PX 2PX 5PX RGBA(0,0,0,0.2)",
+          }}
         >
-            Logout
+          Logout
         </button>
-        <button 
-            onClick={() => navigate("/account")}
-            style={{
-                padding: "10PX 20PX",
-                fontSize: "16PX",
-                backgroundColor: "#007bff",
-                color: "White",
-                border: "None",
-                borderRadius: "5PX",
-                cursor: "Pointer",
-                marginBottom: "20PX",
-                boxShadow: "2PX 2PX 5PX RGBA(0,0,0,0.2)"
-              }}
+        <button
+          onClick={() => navigate("/account")}
+          style={{
+            padding: "10PX 20PX",
+            fontSize: "16PX",
+            backgroundColor: "#007bff",
+            color: "White",
+            border: "None",
+            borderRadius: "5PX",
+            cursor: "Pointer",
+            marginBottom: "20PX",
+            boxShadow: "2PX 2PX 5PX RGBA(0,0,0,0.2)",
+          }}
         >
-            Account
+          Account
         </button>
       </header>
 
       <div className="listingsGrid">
         {listings.map((listing) => (
           <div
-            key={listing._id} 
+            key={listing._id}
             className="listingCard"
             onClick={() => navigate(`/listings/${listing._id}`)}
-            style={{ cursor: "Pointer"}}
+            style={{ cursor: "Pointer" }}
           >
             <img src={listing.images} alt={listing.title} />
             <div className="listingTitle">{listing.title}</div>
