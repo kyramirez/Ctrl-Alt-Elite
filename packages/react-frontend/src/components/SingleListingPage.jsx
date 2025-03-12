@@ -10,7 +10,7 @@ function SingleListingPage() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch(`http://localhost:8000/listings/${id}`)
+    fetch(`http://freebiefinders-h3dtdeacb5gtc8b0.westus3-01.azurewebsites.net/listings/${id}`)
       .then((response) => {
         if (!response.ok) {
           throw new Error("Failed to fetch listing");

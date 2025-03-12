@@ -10,7 +10,7 @@ function AccountPage(props) {
   useEffect(() => {
     if (!props.creds) return;
 
-    fetch(`http://localhost:8000/listings/user/${props.creds}`)
+    fetch(`http://freebiefinders-h3dtdeacb5gtc8b0.westus3-01.azurewebsites.net/listings/user/${props.creds}`)
       .then((response) => {
         if (!response.ok) {
           throw new Error("Failed to fetch user listings");

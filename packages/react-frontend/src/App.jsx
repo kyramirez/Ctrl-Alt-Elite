@@ -17,7 +17,7 @@ function App() {
   const [creds, setCreds] = useState("");
 
   function fetchUsers() {
-    const promise = fetch(`http://localhost:8000/users`, {
+    const promise = fetch(`http://freebiefinders-h3dtdeacb5gtc8b0.westus3-01.azurewebsites.net/users`, {
       headers: addAuthHeader(),
     })
       .then((response) => {
@@ -45,7 +45,7 @@ function App() {
   function loginUser(creds) {
     console.log("App.jsx has received creds: ", creds);
     setCreds(creds.username);
-    return fetch(`http://localhost:8000/login`, {
+    return fetch(`http://freebiefinders-h3dtdeacb5gtc8b0.westus3-01.azurewebsites.net/login`, {
       method: "POST",
       headers: { "Content-type": "application/json" },
       body: JSON.stringify(creds),
@@ -66,7 +66,7 @@ function App() {
 
   function signupUser(creds) {
     setCreds(creds.username);
-    const promise = fetch(`http://localhost:8000/signup`, {
+    const promise = fetch(`http://freebiefinders-h3dtdeacb5gtc8b0.westus3-01.azurewebsites.net/signup`, {
       method: "POST",
       headers: {
         "Content-type": "application/json",
