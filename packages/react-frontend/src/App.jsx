@@ -65,6 +65,7 @@ function App() {
   }
 
   function signupUser(creds) {
+    setCreds(creds.username);
     const promise = fetch(`http://localhost:8000/signup`, {
       method: "POST",
       headers: {
@@ -102,9 +103,9 @@ function App() {
           <Route path="/" element={<LandingPage />} />
           <Route path="/listings/:id" element={<SingleListingPage />} />
           <Route path="/login" element={<Login handleSubmit={loginUser} token={token} />} />
-          <Route path="/signup" element={<Login handleSubmit={signupUser} buttonLabel="Sign Up" />} />
+          <Route path="/signup" element={<Login handleSubmit={signupUser} buttonLabel="Sign Up" token={token} />} />
           <Route path="/listings" element={<ListingsPage addAuthHeader={addAuthHeader} />} />
-          <Route path="/account" element={<AccountPage />} />
+          <Route path="/account" element={<AccountPage creds={creds} />} />
           <Route path="/create-listing" element={<CreateListingPage creds={creds}/>} />
         </Routes>
       </div>

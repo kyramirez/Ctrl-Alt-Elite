@@ -92,7 +92,7 @@ function CreateListingPage(props) {
           onChange={(e) => setLocation(e.target.value)}
           required
         />
-        <button type="submit">Submit Listing</button>
+        <button type="submit" onClick={() => navigate("/account")}>Submit Listing</button>
       </form>
       <button className="back-button" onClick={() => navigate("/account")}>
         Cancel

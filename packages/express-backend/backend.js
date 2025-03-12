@@ -167,6 +167,31 @@ app.post("/listings", (req, res) => {
     });
 });
 
+app.get("/listings/user/:username", (req, res) => {
+  const { username } = req.params;
+
+  User.findOne({ username })
+    .then(user => {
+      if (!user) {
+        return res.status(404).json({ error: "User not found" });
+      }
+
+      console.log("Found user: ", user);
+
+      return Listing.find({ postedBy: user._id });
+    })
+    .then(listings => {
+      if (!listings.length) {
+        return res.status(404).json({ message: "No listings found for this user" });
+      }
+      res.json(listings);
+    })
+    .catch(error => {
+      console.error("Error fetching user listings: ", error);
+      res.status(500).json({ error: "Server error" });
+    });
+});
+
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);
 });

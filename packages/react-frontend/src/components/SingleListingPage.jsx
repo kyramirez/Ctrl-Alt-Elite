@@ -65,18 +65,6 @@ function SingleListingPage() {
                 </p>
             </div>
 
-            <div style={{ display: "Flex", flexDirection: "Column", gap: "10PX" }}>
-                <button style={{ maxHeight: "100PX", minWidth: "100PX", margin: "10PX", backgroundColor: "#007bff", boxShadow: "2PX 2PX 5PX RGBA(0, 0, 0, 0.2)", borderRadius: "5PX" }}>
-                    Favorite
-                </button>
-                <button style={{ maxHeight: "100PX", minWidth: "100PX", margin: "10PX", backgroundColor: "#007bff", boxShadow: "2PX 2PX 5PX RGBA(0, 0, 0, 0.2)", borderRadius: "5PX" }}>
-                    Share
-                </button>
-                <button style={{ maxHeight: "100PX", minWidth: "100PX", margin: "10PX", backgroundColor: "#007bff", boxShadow: "2PX 2PX 5PX RGBA(0, 0, 0, 0.2)", borderRadius: "5PX" }}>
-                    Flag
-                </button>
-            </div>
-
             <div style={{ display: "Flex", flexDirection: "Column", gap: "10PX", textAlign: "Left" }}>
                 <p style={{ margin: "10PX", fontSize: "20PX" }}><b>Posted: </b>{new Date(listing.createdAt).toLocaleString()}</p>
                 <p style={{ margin: "10PX", fontSize: "20PX" }}><b>Location: </b>{listing.location}</p>
