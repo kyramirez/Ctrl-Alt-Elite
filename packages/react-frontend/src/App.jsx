@@ -2,11 +2,11 @@ import { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.css";
 import "./App.css";
-import Login from "./Login";
-import LandingPage from "./components/LandingPage";
+import Login from "./Login.jsx";
+import LandingPage from "./components/LandingPage.jsx";
 import ListingsPage from "./components/Listings/ListingsPage.jsx";
 import AccountPage from "./components/Account/accountPage.jsx";
-import CreateListingPage from "./components/CreateListingPage";
+import CreateListingPage from "./components/CreateListingPage.jsx";
 import SingleListingPage from "./components/SingleListingPage.jsx";
 import { useNavigate } from "react-router-dom";
 
