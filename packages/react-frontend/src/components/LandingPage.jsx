@@ -13,51 +13,54 @@ function LandingPage() {
 
   return (
     <div style={{
-      background: "linear-gradient(to right, #ff9a9e, #fad0c4)",
+      background: "linear-gradient(to right, #a1c4fd, #c2e9fb)", // Soft blue gradient
       height: "100vh",
       display: "flex",
       flexDirection: "column",
       alignItems: "center",
       justifyContent: "center",
-      textAlign: "center"
+      textAlign: "center",
+      padding: "20px"
     }}>
-      <h1 style={{ fontSize: "100PX", color: "#fff" }}>
+      <h1 style={{ fontSize: "80px", color: "#fff", marginBottom: "20px" }}>
         <b>Hello, Welcome to FreebieFinder!</b>
       </h1>
-      <p style={{ fontSize: "50PX", color: "#fff" }}>
+      <p style={{ fontSize: "30px", color: "#fff", marginBottom: "30px" }}>
         Discover a variety of items, all for free!
       </p>
       <button
         style={{
-          borderRadius: "15PX",
-          margin: "10PX",
-          backgroundColor: "#007bff",
+          borderRadius: "10px",
+          margin: "10px",
+          backgroundColor: "#007bff", // Soft blue to match the theme
           color: "#fff",
-          fontSize: "20PX",
-          boxShadow: "4PX 4PX 10PX RGBA(0, 0, 0, 0.2)",
-          padding: "10px 20px",
+          fontSize: "18px",
+          boxShadow: "2px 2px 10px rgba(0, 0, 0, 0.2)",
+          padding: "12px 24px",
           border: "none",
           cursor: "pointer",
+          fontWeight: "bold",
         }}
         onClick={handleSignUpClick}
       >
-        <b>Sign Up</b>
+        Sign Up
       </button>
       <button
         style={{
-          borderRadius: "15PX",
-          margin: "10PX",
-          backgroundColor: "#007bff",
+          borderRadius: "10px",
+          margin: "10px",
+          backgroundColor: "#007bff", // Slightly darker blue for contrast
           color: "#fff",
-          fontSize: "20PX",
-          boxShadow: "4PX 4PX 10PX RGBA(0, 0, 0, 0.2)",
-          padding: "10px 20px",
+          fontSize: "18px",
+          boxShadow: "2px 2px 10px rgba(0, 0, 0, 0.2)",
+          padding: "12px 24px",
           border: "none",
           cursor: "pointer",
+          fontWeight: "bold",
         }}
         onClick={handleLoginClick}
       >
-        <b>Already have an account</b>
+        Already have an account
       </button>
     </div>
   );
