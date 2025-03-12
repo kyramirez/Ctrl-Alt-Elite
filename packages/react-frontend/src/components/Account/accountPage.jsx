@@ -2,42 +2,10 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./accountPage.css";
 
-const sampleImages = [
-  {
-    title: "Smartphone",
-    imageUrl:
-      "https://images.unsplash.com/photo-1634403665481-74948d815f03?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  },
-  {
-    title: "Laptop",
-    imageUrl:
-      "https://images.unsplash.com/photo-1531297484001-80022131f5a1?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8bGFwdG9wfGVufDB8fDB8fHwy",
-  },
-  {
-    title: "Gaming Console",
-    imageUrl:
-      "https://images.unsplash.com/photo-1588689115724-a624efec3c93?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Z2FtZSUyMGNvbnNvbGV8ZW58MHx8MHx8fDI%3D",
-  },
-  {
-    title: "Bicycle",
-    imageUrl:
-      "https://images.unsplash.com/photo-1485965120184-e220f721d03e?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8YmlrZXxlbnwwfHwwfHx8Mg%3D%3D",
-  },
-  {
-    title: "Sneakers",
-    imageUrl:
-      "https://images.unsplash.com/photo-1605348532760-6753d2c43329?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8c25lYWtlcnxlbnwwfHwwfHx8Mg%3D%3D",
-  },
-  {
-    title: "Furniture",
-    imageUrl:
-      "https://images.unsplash.com/photo-1618220179428-22790b461013?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8ZnVybml0dXJlfGVufDB8fDB8fHwy",
-  },
-];
-
 function AccountPage(props) {
   const navigate = useNavigate();
   const [listings, setListings] = useState([]);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     if (!props.creds) return;
