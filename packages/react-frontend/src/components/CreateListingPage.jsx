@@ -1,19 +1,25 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "./CreateListingPage.css"; // Import the CSS file
+import "./CreateListingPage.css";
+
+
+
 
 function CreateListingPage() {
+
+
   const navigate = useNavigate();
   const [title, setTitle] = useState("");
   const [imageUrl, setImageUrl] = useState("");
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("New Listing Created:", { title, imageUrl });
 
-    // You can later integrate a backend or store this in local state/context
-    navigate("/account"); // Redirect back to the account page after submission
+    navigate("/account");
   };
+
 
   return (
     <div className="create-container">
@@ -41,5 +47,7 @@ function CreateListingPage() {
     </div>
   );
 }
+
+
 
 export default CreateListingPage;
