@@ -9,16 +9,19 @@
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
+
 .create-container h1 {
   margin-bottom: 25px;
   font-size: 32px; /* Bigger title */
 }
+
 
 .create-container form {
   display: flex;
   flex-direction: column;
   gap: 20px; /* More spacing between inputs */
 }
+
 
 .create-container input {
   width: 100%;
@@ -28,6 +31,7 @@
   font-size: 18px; /* Larger text */
 }
 
+
 .create-container button {
   padding: 15px;
   border: none;
@@ -35,6 +39,7 @@
   cursor: pointer;
   font-size: 18px; /* Bigger buttons */
 }
+
 
 .create-container button[type="submit"] {
   background-color: #007bff;

@@ -2,10 +2,16 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./CreateListingPage.css";
 
+
+
+
 function CreateListingPage() {
+
+
   const navigate = useNavigate();
   const [title, setTitle] = useState("");
   const [imageUrl, setImageUrl] = useState("");
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -14,6 +20,7 @@ function CreateListingPage() {
     // Redirect back to account page
     navigate("/account");
   };
+
 
   return (
     <div className="create-container">
@@ -41,5 +48,7 @@ function CreateListingPage() {
     </div>
   );
 }
+
+
 
 export default CreateListingPage;
