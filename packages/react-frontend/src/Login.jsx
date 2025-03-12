@@ -17,10 +17,15 @@ function Login(props) {
   }
 
   function submitForm() {
+    if (!creds.username || !creds.pwd) {
+      alert("Please fill in both username and password.");
+      return;
+    }
     props.handleSubmit(creds);
     setCreds({ username: "", pwd: "" });
     navigate("/listings");
   }
+  
 
   const formStyle = {
     width: "300px",
