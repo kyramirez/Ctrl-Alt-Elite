@@ -1,47 +1,54 @@
 .create-container {
   width: 90%;
-  max-width: 500px;
-  margin: 50px auto;
+  max-width: 700px; /* Increased width */
+  margin: 80px auto; /* More space around the form */
   text-align: center;
-  padding: 20px;
+  padding: 40px; /* More padding for a spacious look */
   background: white;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
 .create-container h1 {
-  margin-bottom: 20px;
-  font-size: 24px;
+  margin-bottom: 25px;
+  font-size: 32px; /* Bigger title */
 }
 
 .create-container form {
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 20px; /* More spacing between inputs */
 }
 
 .create-container input {
   width: 100%;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  font-size: 16px;
+  padding: 15px; /* Bigger input fields */
+  border: 1.5px solid #ccc;
+  border-radius: 8px;
+  font-size: 18px; /* Larger text */
 }
 
 .create-container button {
-  padding: 10px;
+  padding: 15px;
   border: none;
-  border-radius: 5px;
+  border-radius: 8px;
   cursor: pointer;
-  font-size: 16px;
+  font-size: 18px; /* Bigger buttons */
 }
 
 .create-container button[type="submit"] {
   background-color: #007bff;
   color: white;
+  font-weight: bold;
 }
 
 .create-container .back-button {
-  background-color: #ccc;
-  margin-top: 10px;
+  background-color: #aaa;
+  margin-top: 15px;
+  font-weight: bold;
+  transition: background-color 0.2s;
+}
+
+.create-container .back-button:hover {
+  background-color: #888;
 }
