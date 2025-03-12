@@ -1,9 +1,9 @@
 .create-container {
   width: 90%;
-  max-width: 700px; /* Increased width */
-  margin: 80px auto; /* More space around the form */
+  max-width: 700px;
+  margin: 80px auto; 
   text-align: center;
-  padding: 40px; /* More padding for a spacious look */
+  padding: 40px; 
   background: white;
   border-radius: 12px;
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
@@ -12,23 +12,23 @@
 
 .create-container h1 {
   margin-bottom: 25px;
-  font-size: 32px; /* Bigger title */
+  font-size: 32px; 
 }
 
 
 .create-container form {
   display: flex;
   flex-direction: column;
-  gap: 20px; /* More spacing between inputs */
+  gap: 20px; 
 }
 
 
 .create-container input {
   width: 100%;
-  padding: 15px; /* Bigger input fields */
+  padding: 15px;
   border: 1.5px solid #ccc;
   border-radius: 8px;
-  font-size: 18px; /* Larger text */
+  font-size: 18px;
 }
 
 
@@ -37,7 +37,7 @@
   border: none;
   border-radius: 8px;
   cursor: pointer;
-  font-size: 18px; /* Bigger buttons */
+  font-size: 18px; 
 }
 
 

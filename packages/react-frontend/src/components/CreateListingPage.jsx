@@ -17,7 +17,6 @@ function CreateListingPage() {
     e.preventDefault();
     console.log("New Listing Created:", { title, imageUrl });
 
-    // Redirect back to account page
     navigate("/account");
   };
 

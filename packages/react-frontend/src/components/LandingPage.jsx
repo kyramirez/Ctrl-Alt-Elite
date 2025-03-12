@@ -13,7 +13,7 @@ function LandingPage() {
 
   return (
     <div style={{
-      background: "linear-gradient(to right, #a1c4fd, #c2e9fb)", // Soft blue gradient
+      background: "linear-gradient(to right, #a1c4fd, #c2e9fb)",
       height: "100vh",
       display: "flex",
       flexDirection: "column",
@@ -32,7 +32,7 @@ function LandingPage() {
         style={{
           borderRadius: "10px",
           margin: "10px",
-          backgroundColor: "#007bff", // Soft blue to match the theme
+          backgroundColor: "#007bff", 
           color: "#fff",
           fontSize: "18px",
           boxShadow: "2px 2px 10px rgba(0, 0, 0, 0.2)",
@@ -49,7 +49,7 @@ function LandingPage() {
         style={{
           borderRadius: "10px",
           margin: "10px",
-          backgroundColor: "#007bff", // Slightly darker blue for contrast
+          backgroundColor: "#007bff",
           color: "#fff",
           fontSize: "18px",
           boxShadow: "2px 2px 10px rgba(0, 0, 0, 0.2)",
