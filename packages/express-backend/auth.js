@@ -4,12 +4,12 @@ import { User } from "./models/user.js";
 
 export function registerUser(req, res) {
   const { username, pwd } = req.body;
-  
+
   if (!username || !pwd) {
     res.status(400).send("Bad request.");
   } else {
     User.findOne({ username })
-      .then(existingUser => {
+      .then((existingUser) => {
         if (existingUser) {
           res.status(409).send("Username already taken.");
         } else {
@@ -23,35 +23,38 @@ export function registerUser(req, res) {
             .then(() => tokenGenerater(username))
             .then((token) => {
               console.log(token);
-              res.status(201).send({ token: token })
+              res.status(201).send({ token: token });
             });
         }
       })
-      .catch(error => res.status(500).send("Error registering user: " + error.message));
+      .catch((error) =>
+        res.status(500).send("Error registering user: " + error.message),
+      );
   }
 }
 
 export function loginUser(req, res) {
   const { username, pwd } = req.body;
   User.findOne({ username })
-    .then(user => {
+    .then((user) => {
       if (!user) {
         return res.status(401).send("Unauthorized");
       }
 
-      return bcrypt.compare(pwd, user.pwd)
-        .then(matched => {
-          if (!matched) {
-            return res.status(401).send("Unauthorized");
-          }
+      return bcrypt.compare(pwd, user.pwd).then((matched) => {
+        if (!matched) {
+          return res.status(401).send("Unauthorized");
+        }
 
-          return tokenGenerater(user.username)
-            .then(token => res.status(200).send({ token: token, username: username, pwd: pwd}));
-        });
+        return tokenGenerater(user.username).then((token) =>
+          res.status(200).send({ token: token, username: username, pwd: pwd }),
+        );
+      });
     })
-    .catch(error => res.status(500).send("Error logging in: " + error.message));
+    .catch((error) =>
+      res.status(500).send("Error logging in: " + error.message),
+    );
 }
-
 
 function tokenGenerater(username) {
   return new Promise((resolve, reject) => {
@@ -65,7 +68,7 @@ function tokenGenerater(username) {
         } else {
           resolve(token);
         }
-      }
+      },
     );
   });
 }
@@ -77,7 +80,7 @@ export function authenticateUser(req, res, next) {
   if (!token) {
     console.log("No token received");
     res.status(401).end();
-  } 
+  }
 
   jwt.verify(token, process.env.TOKEN_SECRET, (error, decoded) => {
     if (error) {

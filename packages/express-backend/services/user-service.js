@@ -29,11 +29,11 @@ function delUserById(id) {
 
 function getUserId(username) {
   return User.findOne({ username })
-    .then(user => {
+    .then((user) => {
       if (!user) throw new Error("User not found");
       return user._id;
     })
-    .catch(error => {
+    .catch((error) => {
       console.error("Error fetching userId: ", error.message);
       return null;
     });

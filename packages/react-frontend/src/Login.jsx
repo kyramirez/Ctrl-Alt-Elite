@@ -6,10 +6,10 @@ function Login(props) {
 
   useEffect(() => {
     if (props.token !== "INVALID_TOKEN") {
-      console.log("Updated token: ", props.token)
+      console.log("Updated token: ", props.token);
       navigate("/listings");
     }
-  }, [props.token, navigate])
+  }, [props.token, navigate]);
 
   const [creds, setCreds] = useState({
     username: "",
@@ -25,9 +25,9 @@ function Login(props) {
   }
 
   function submitForm() {
-    console.log("Button was clicked.")
-    console.log("Login.jsx is sending creds: ", creds)
-    props.handleSubmit(creds)
+    console.log("Button was clicked.");
+    console.log("Login.jsx is sending creds: ", creds);
+    props.handleSubmit(creds);
     setCreds({ username: "", pwd: "" });
   }
 
