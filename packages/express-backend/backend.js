@@ -23,9 +23,9 @@ const port = 8000;
 app.post("/signup", registerUser);
 app.post("/login", loginUser);
 
-// app.get("/", (req, res) => {
-//   res.send("Hello World!");
-// });
+app.get("/", (req, res) => {
+  res.send("Hello World!");
+});
 
 app.post("/users", authenticateUser, (req, res) => {
   const newUser = req.body;
