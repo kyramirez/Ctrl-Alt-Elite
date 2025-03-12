@@ -24,7 +24,7 @@ function LandingPage() {
         style={{
           borderRadius: "15PX",
           margin: "10PX",
-          backgroundColor: "Blue",
+          backgroundColor: "#007bff",
           fontSize: "20PX",
           boxShadow: "4PX 4PX 10PX RGBA(0, 0, 0, 0.2)",
         }}
@@ -36,7 +36,7 @@ function LandingPage() {
         style={{
           borderRadius: "15PX",
           margin: "10PX",
-          backgroundColor: "Blue",
+          backgroundColor: "#007bff",
           fontSize: "20PX",
           boxShadow: "4PX 4PX 10PX RGBA(0, 0, 0, 0.2)",
         }}
