@@ -27,6 +27,7 @@ function Login(props) {
   function submitForm() {
     console.log("Button was clicked.");
     console.log("Login.jsx is sending creds: ", creds);
+    creds.username = creds.username.trim();
     props.handleSubmit(creds);
     setCreds({ username: "", pwd: "" });
   }
