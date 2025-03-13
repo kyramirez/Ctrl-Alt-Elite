@@ -41,9 +41,9 @@ function SingleListingPage({ addAuthHeader, creds }) {
   function handleDelete() {
     fetch(`http://localhost:8000/listings/${id}`, {
       method: "DELETE",
-      headers: {
+      headers: addAuthHeader({
         "Content-type": "application/json",
-      },
+      }),
       body: JSON.stringify({ postedBy: creds }),
     })
       .then((response) => {

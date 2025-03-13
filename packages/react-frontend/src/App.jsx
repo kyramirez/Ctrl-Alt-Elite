@@ -68,9 +68,9 @@ function App() {
     setCreds(creds.username);
     const promise = fetch(`http://localhost:8000/signup`, {
       method: "POST",
-      headers: {
+      headers: addAuthHeader({
         "Content-type": "application/json",
-      },
+      }),
       body: JSON.stringify(creds),
     })
       .then((response) => {
@@ -128,7 +128,7 @@ function App() {
           <Route path="/account" element={<AccountPage creds={creds} addAuthHeader={addAuthHeader} token={token} />} />
           <Route
             path="/create-listing"
-            element={<CreateListingPage creds={creds} />}
+            element={<CreateListingPage addAuthHeader={addAuthHeader} creds={creds} />}
           />
         </Routes>
       </div>

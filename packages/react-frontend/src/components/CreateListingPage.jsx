@@ -34,9 +34,9 @@ function CreateListingPage(props) {
       console.log("Sending data: ", newListing);
       const response = fetch("http://localhost:8000/listings", {
         method: "POST",
-        headers: {
+        headers: props.addAuthHeader({
           "Content-type": "application/json",
-        },
+        }),
         body: JSON.stringify(newListing),
       });
 

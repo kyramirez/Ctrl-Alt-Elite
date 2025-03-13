@@ -77,7 +77,7 @@ app.get("/users/:id", (req, res) => {
     });
 });
 
-app.post("/users", (req, res) => {
+app.post("/users", authenticateUser, (req, res) => {
   const newUser = req.body;
   addUser(newUser)
     .then((result) => {
@@ -93,7 +93,7 @@ app.post("/users", (req, res) => {
 });
 
 app.delete("/users/:id", (req, res) => {
-  const userId = req.params.id; // Convert ID to number if needed
+  const userId = req.params.id;
   console.log(userId);
 
   delUserById(userId)
@@ -136,7 +136,7 @@ app.get("/listings", authenticateUser, (req, res) => {
     });
 });
 
-app.post("/listings", (req, res) => {
+app.post("/listings", authenticateUser, (req, res) => {
   const { title, description, category, location, images, postedBy } = req.body;
 
   console.log("Received body:", req.body);
@@ -200,7 +200,7 @@ app.get("/listings/user/:username", (req, res) => {
     });
 });
 
-app.delete("/listings/:id", (req, res) => {
+app.delete("/listings/:id", authenticateUser, (req, res) => {
   const listingId = req.params.id;
   const { postedBy } = req.body;
   Listing.findById(listingId)
