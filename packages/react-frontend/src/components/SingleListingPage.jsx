@@ -87,7 +87,8 @@ function SingleListingPage({ addAuthHeader, creds }) {
               cursor: "Pointer",
               marginBottom: "20PX",
               boxShadow: "2PX 2PX 5PX RGBA(0,0,0,0.2)",
-            }}>
+            }}
+          >
             Delete Posting
           </button>
         )}
