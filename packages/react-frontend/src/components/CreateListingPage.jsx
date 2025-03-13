@@ -32,11 +32,11 @@ function CreateListingPage(props) {
 
     try {
       console.log("Sending data: ", newListing);
-      const response = fetch("http://freebiefinders-h3dtdeacb5gtc8b0.westus3-01.azurewebsites.net/listings", {
+      const response = fetch("http://localhost:8000/listings", {
         method: "POST",
-        headers: {
+        headers: props.addAuthHeader({
           "Content-type": "application/json",
-        },
+        }),
         body: JSON.stringify(newListing),
       });
 

@@ -8,7 +8,7 @@ import ListingsPage from "./components/Listings/ListingsPage.jsx";
 import AccountPage from "./components/Account/accountPage.jsx";
 import CreateListingPage from "./components/CreateListingPage.jsx";
 import SingleListingPage from "./components/SingleListingPage.jsx";
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function App() {
   const INVALID_TOKEN = "INVALID_TOKEN";
@@ -17,12 +17,9 @@ function App() {
   const [creds, setCreds] = useState("");
 
   function fetchUsers() {
-    const promise = fetch(
-      `http://freebiefinders-h3dtdeacb5gtc8b0.westus3-01.azurewebsites.net/users`,
-      {
-        headers: addAuthHeader(),
-      },
-    )
+    const promise = fetch(`http://freebiefinders-h3dtdeacb5gtc8b0.westus3-01.azurewebsites.net/users`, {
+      headers: addAuthHeader(),
+    })
       .then((response) => {
         if (!response.ok) {
           throw new Error(`Error fetching users: ${response.status}`);
@@ -48,14 +45,11 @@ function App() {
   function loginUser(creds) {
     console.log("App.jsx has received creds: ", creds);
     setCreds(creds.username);
-    return fetch(
-      `http://freebiefinders-h3dtdeacb5gtc8b0.westus3-01.azurewebsites.net/login`,
-      {
-        method: "POST",
-        headers: { "Content-type": "application/json" },
-        body: JSON.stringify(creds),
-      },
-    )
+    return fetch(`http://freebiefinders-h3dtdeacb5gtc8b0.westus3-01.azurewebsites.net/login`, {
+      method: "POST",
+      headers: { "Content-type": "application/json" },
+      body: JSON.stringify(creds),
+    })
       .then((response) => {
         if (!response.ok) {
           throw new Error(`Login failed: ${response.status}`);
@@ -72,16 +66,13 @@ function App() {
 
   function signupUser(creds) {
     setCreds(creds.username);
-    const promise = fetch(
-      `http://freebiefinders-h3dtdeacb5gtc8b0.westus3-01.azurewebsites.net/signup`,
-      {
-        method: "POST",
-        headers: {
-          "Content-type": "application/json",
-        },
-        body: JSON.stringify(creds),
+    const promise = fetch(`http://freebiefinders-h3dtdeacb5gtc8b0.westus3-01.azurewebsites.net/signup`, {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json",
       },
-    )
+      body: JSON.stringify(creds),
+    })
       .then((response) => {
         if (response.status === 201) {
           response.json().then((payload) => setToken(payload.token));
@@ -110,7 +101,7 @@ function App() {
       <div>
         <Routes>
           <Route path="/" element={<LandingPage token={token} />} />
-          <Route path="/listings/:id" element={<SingleListingPage />} />
+          <Route path="/listings/:id" element={<SingleListingPage addAuthHeader={addAuthHeader} creds={creds} />} />
           <Route
             path="/login"
             element={<Login handleSubmit={loginUser} token={token} />}
@@ -134,10 +125,10 @@ function App() {
               />
             }
           />
-          <Route path="/account" element={<AccountPage creds={creds} />} />
+          <Route path="/account" element={<AccountPage creds={creds} addAuthHeader={addAuthHeader} token={token} />} />
           <Route
             path="/create-listing"
-            element={<CreateListingPage creds={creds} />}
+            element={<CreateListingPage addAuthHeader={addAuthHeader} creds={creds} />}
           />
         </Routes>
       </div>
