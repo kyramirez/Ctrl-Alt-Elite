@@ -200,6 +200,33 @@ app.get("/listings/user/:username", (req, res) => {
     });
 });
 
+app.delete("/listings/:id", (req, res) => {
+  const listingId = req.params.id;
+  const { postedBy } = req.body;
+  Listing.findById(listingId)
+    .then((listing) => {
+      if (!listing) {
+        return res.status(404).json({ error: "Listing not found" });
+      }
+
+      return User.findById(listing.postedBy).then((user) => {
+        if (!user || user.username !== postedBy) {
+          return res.status(403).json({ error: "Unauthorized" });
+        }
+
+        return Listing.findByIdAndDelete(listingId);
+      });
+    })
+    .then(() => {
+      res.status(200).json({ message: "Listing deleted successfully" });
+    })
+    .catch((error) => {
+      console.error("Error deleting listing:", error);
+      res.status(500).json({ error: "Server error" });
+    });
+});
+
+
 app.listen(process.env.PORT || port, () => {
   console.log("REST API is listening.");
 });
