@@ -34,6 +34,7 @@ Frontend application:
 - React application where routing is handled by React Router
 
 Backend application:
+
 - Powered by Node.js and Express, handles API requests for operations, such as user authentication, data retrieval, and the manipulation of listings. Interfaces with MongoDB database for data storage.
 
 Centralized Configuration:
