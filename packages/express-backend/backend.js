@@ -18,7 +18,7 @@ mongoose
 const app = express();
 app.use(cors());
 app.use(express.json());
-const port = 8080;
+const port = 8000;
 
 app.post("/signup", registerUser);
 app.post("/login", loginUser);
