@@ -13,4 +13,9 @@ Development environment setup:
 - install prettier and eslint
 
 with:
-node-version: 22 - run: npm ci - run: npm run -w express-backend lint - run: npm run -w react-frontend lint - run: npm run -w react-frontend build
+node-version: 22
+
+- run: npm ci
+- run: npm run -w express-backend lint
+- run: npm run -w react-frontend lint
+- run: npm run -w react-frontend build
