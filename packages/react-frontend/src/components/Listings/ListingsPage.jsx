@@ -10,7 +10,7 @@ function ListingsPage({ addAuthHeader, resetToken }) {
 
   useEffect(() => {
     fetch(
-      "http://freebiefinders-h3dtdeacb5gtc8b0.westus3-01.azurewebsites.net",
+      "http://freebiefinders-h3dtdeacb5gtc8b0.westus3-01.azurewebsites.net/listings",
       {
         headers: addAuthHeader(),
       },
