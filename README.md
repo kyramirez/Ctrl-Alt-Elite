@@ -6,10 +6,9 @@ https://www.figma.com/design/UO3XsDZJ9Al31bELp3YrSi/Page-Designs?node-id=0-1&p=f
 Date last updated: 2/22
 
 Development environment setup:
-
-- Node.js
+- install Node.js and npm
 - npm install
-- git
+- install git
 - install prettier and eslint
 
 with:
@@ -19,3 +18,5 @@ node-version: 22
 - run: npm run -w express-backend lint
 - run: npm run -w react-frontend lint
 - run: npm run -w react-frontend build
+
+doc folder link: https://vscode.dev/github/kyramirez/Ctrl-Alt-Elite/blob/main/docs 
