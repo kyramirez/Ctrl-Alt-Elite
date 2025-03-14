@@ -8,7 +8,7 @@ function LandingPage() {
   };
 
   const handleSignUpClick = () => {
-    navigate("/signUp");
+    navigate("/signup");
   };
 
   return (
