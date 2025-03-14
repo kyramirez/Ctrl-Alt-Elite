@@ -32,13 +32,16 @@ function CreateListingPage(props) {
 
     try {
       console.log("Sending data: ", newListing);
-      const response = fetch("http://freebiefinders-h3dtdeacb5gtc8b0.westus3-01.azurewebsites.net/listings", {
-        method: "POST",
-        headers: props.addAuthHeader({
-          "Content-type": "application/json",
-        }),
-        body: JSON.stringify(newListing),
-      });
+      const response = fetch(
+        "http://freebiefinders-h3dtdeacb5gtc8b0.westus3-01.azurewebsites.net/listings",
+        {
+          method: "POST",
+          headers: props.addAuthHeader({
+            "Content-type": "application/json",
+          }),
+          body: JSON.stringify(newListing),
+        },
+      );
 
       if (!response.ok) {
         throw new Error(`Failed to create listing: ${(await response).status}`);
