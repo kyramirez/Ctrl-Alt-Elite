@@ -11,7 +11,9 @@ function SingleListingPage({ addAuthHeader, creds }) {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch(`http://localhost:8000/listings/${id}`)
+    fetch(
+      `http://freebiefinders-h3dtdeacb5gtc8b0.westus3-01.azurewebsites.net/listings/${id}`,
+    )
       .then((response) => {
         if (!response.ok) {
           throw new Error("Failed to fetch listing");
@@ -22,7 +24,9 @@ function SingleListingPage({ addAuthHeader, creds }) {
         setListing(data);
         setLoading(false);
 
-        return fetch(`http://localhost:8000/users/${data.postedBy}`);
+        return fetch(
+          `http://freebiefinders-h3dtdeacb5gtc8b0.westus3-01.azurewebsites.net/users/${data.postedBy}`,
+        );
       })
       .then((response) => response.json())
       .then((userData) => {
@@ -39,13 +43,16 @@ function SingleListingPage({ addAuthHeader, creds }) {
   if (!listing) return <p>No listing found.</p>;
 
   function handleDelete() {
-    fetch(`http://localhost:8000/listings/${id}`, {
-      method: "DELETE",
-      headers: addAuthHeader({
-        "Content-type": "application/json",
-      }),
-      body: JSON.stringify({ postedBy: creds }),
-    })
+    fetch(
+      `http://freebiefinders-h3dtdeacb5gtc8b0.westus3-01.azurewebsites.net/listings/${id}`,
+      {
+        method: "DELETE",
+        headers: addAuthHeader({
+          "Content-type": "application/json",
+        }),
+        body: JSON.stringify({ postedBy: creds }),
+      },
+    )
       .then((response) => {
         if (!response.ok) {
           throw new Error("Failed to delete listing");
@@ -87,7 +94,8 @@ function SingleListingPage({ addAuthHeader, creds }) {
               cursor: "Pointer",
               marginBottom: "20PX",
               boxShadow: "2PX 2PX 5PX RGBA(0,0,0,0.2)",
-            }}>
+            }}
+          >
             Delete Posting
           </button>
         )}

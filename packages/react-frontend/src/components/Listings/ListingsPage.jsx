@@ -9,9 +9,12 @@ function ListingsPage({ addAuthHeader, resetToken }) {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetch("http://freebiefinders-h3dtdeacb5gtc8b0.westus3-01.azurewebsites.net", {
-      headers: addAuthHeader(),
-    })
+    fetch(
+      "http://freebiefinders-h3dtdeacb5gtc8b0.westus3-01.azurewebsites.net",
+      {
+        headers: addAuthHeader(),
+      },
+    )
       .then((response) => {
         if (!response.ok) {
           throw new Error("Failed to fetch listings");
