@@ -62,7 +62,7 @@ function LandingPage() {
         }}
         onClick={handleLoginClick}
       >
-        Already have an account
+        <b>Already have an account</b>
       </button>
     </div>
   );
