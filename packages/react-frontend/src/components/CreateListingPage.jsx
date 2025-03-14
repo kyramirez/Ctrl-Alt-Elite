@@ -33,7 +33,7 @@ function CreateListingPage(props) {
     try {
       console.log("Sending data: ", newListing);
       const response = fetch(
-        "http://freebiefinders-h3dtdeacb5gtc8b0.westus3-01.azurewebsites.net/listings",
+        "https://freebiefinders-h3dtdeacb5gtc8b0.westus3-01.azurewebsites.net/listings",
         {
           method: "POST",
           headers: props.addAuthHeader({

@@ -17,7 +17,7 @@ function App() {
 
   function fetchUsers() {
     const promise = fetch(
-      `http://freebiefinders-h3dtdeacb5gtc8b0.westus3-01.azurewebsites.net/users`,
+      `https://freebiefinders-h3dtdeacb5gtc8b0.westus3-01.azurewebsites.net/users`,
       {
         headers: addAuthHeader(),
       },
@@ -48,7 +48,7 @@ function App() {
     console.log("App.jsx has received creds: ", creds);
     setCreds(creds.username);
     return fetch(
-      `http://freebiefinders-h3dtdeacb5gtc8b0.westus3-01.azurewebsites.net/login`,
+      `https://freebiefinders-h3dtdeacb5gtc8b0.westus3-01.azurewebsites.net/login`,
       {
         method: "POST",
         headers: { "Content-type": "application/json" },
@@ -72,7 +72,7 @@ function App() {
   function signupUser(creds) {
     setCreds(creds.username);
     const promise = fetch(
-      `http://freebiefinders-h3dtdeacb5gtc8b0.westus3-01.azurewebsites.net/signup`,
+      `https://freebiefinders-h3dtdeacb5gtc8b0.westus3-01.azurewebsites.net/signup`,
       {
         method: "POST",
         headers: {

@@ -11,7 +11,7 @@ function AccountPage(props) {
     if (!props.creds) return;
 
     fetch(
-      `http://freebiefinders-h3dtdeacb5gtc8b0.westus3-01.azurewebsites.net/listings/user/${props.creds}`,
+      `https://freebiefinders-h3dtdeacb5gtc8b0.westus3-01.azurewebsites.net/listings/user/${props.creds}`,
     )
       .then((response) => {
         if (!response.ok) {

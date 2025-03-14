@@ -12,7 +12,7 @@ function SingleListingPage({ addAuthHeader, creds }) {
 
   useEffect(() => {
     fetch(
-      `http://freebiefinders-h3dtdeacb5gtc8b0.westus3-01.azurewebsites.net/listings/${id}`,
+      `https://freebiefinders-h3dtdeacb5gtc8b0.westus3-01.azurewebsites.net/listings/${id}`,
     )
       .then((response) => {
         if (!response.ok) {
@@ -25,7 +25,7 @@ function SingleListingPage({ addAuthHeader, creds }) {
         setLoading(false);
 
         return fetch(
-          `http://freebiefinders-h3dtdeacb5gtc8b0.westus3-01.azurewebsites.net/users/${data.postedBy}`,
+          `https://freebiefinders-h3dtdeacb5gtc8b0.westus3-01.azurewebsites.net/users/${data.postedBy}`,
         );
       })
       .then((response) => response.json())
@@ -44,7 +44,7 @@ function SingleListingPage({ addAuthHeader, creds }) {
 
   function handleDelete() {
     fetch(
-      `http://freebiefinders-h3dtdeacb5gtc8b0.westus3-01.azurewebsites.net/listings/${id}`,
+      `https://freebiefinders-h3dtdeacb5gtc8b0.westus3-01.azurewebsites.net/listings/${id}`,
       {
         method: "DELETE",
         headers: addAuthHeader({
