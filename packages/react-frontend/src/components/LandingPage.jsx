@@ -45,7 +45,7 @@ function LandingPage() {
         }}
         onClick={handleSignUpClick}
       >
-        Sign Up
+        <b>Sign Up</b>
       </button>
       <button
         style={{
