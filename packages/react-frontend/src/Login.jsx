@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 function Login(props) {
@@ -100,7 +100,7 @@ function Login(props) {
         <input
           type="password"
           name="pwd"
-          id="pwd"
+          id="password"
           value={creds.pwd}
           onChange={handleChange}
           style={inputStyle}
@@ -108,7 +108,7 @@ function Login(props) {
       </div>
 
       <input
-        type="button"
+        type="submit"
         value={props.buttonLabel || "Log In"}
         onClick={submitForm}
         style={buttonStyle}
