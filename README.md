@@ -6,3 +6,7 @@ https://www.figma.com/design/UO3XsDZJ9Al31bELp3YrSi/Page-Designs?node-id=0-1&p=f
 Date last updated: 2/22
 
 Development environment setup:
+
+
+Jest testing results on Login component:
+![Full coverage](./test_results.png)
