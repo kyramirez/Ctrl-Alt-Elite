@@ -1,31 +1,46 @@
 .create-container {
-  width: 90%;
-  max-width: 700px;
-  margin: 80px auto;
+  width: 90vw;
+  max-width: 1200px;
+  max-height: 800px;
+  height: 90vw;
+  margin: 0 auto;
   text-align: center;
-  padding: 40px;
+  padding: 20px;
   background: white;
-  border-radius: 12px;
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .create-container h1 {
-  margin-bottom: 25px;
+  width: 70.4vw;               
+  margin-left: -20px;         
+  margin-right: -20px; 
+  margin-top: -20px;
+  background-color: #85b8e4; 
+  box-sizing: border-box;
   font-size: 32px;
+  border-top-left-radius: 10px; 
+  border-top-right-radius: 10px;
+  height: 80px;
+  line-height: 80px;
+  margin-bottom: 40px;
 }
 
 .create-container form {
   display: flex;
-  flex-direction: column;
-  gap: 20px;
+  flex-direction: column; 
+  align-items: flex-start;
+  gap: 10px;
 }
 
 .create-container input {
-  width: 100%;
+  width: 40%;
+  max-height: 40px;
   padding: 15px;
   border: 1.5px solid #ccc;
   border-radius: 8px;
   font-size: 18px;
+  background-color: lightgray;
 }
 
 .create-container button {
@@ -52,3 +67,30 @@
 .create-container .back-button:hover {
   background-color: #888;
 }
+
+.label {
+  margin-bottom: 0 !important;
+  font-size: 25px;
+}
+
+body {
+  background-color: lightblue;
+}
+
+.image-url {
+  width: 55% !important;
+}
+input.description {
+  width: 55% !important;
+  max-height: none;
+  height: 120px !important;
+}
+
+.bottom-div {
+  display: flex;
+  justify-content: space-between;
+  margin-left: 20px;
+  margin-right: 50px;
+  margin-top: 50px;
+}
+

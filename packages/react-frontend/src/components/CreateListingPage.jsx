@@ -58,50 +58,55 @@ function CreateListingPage(props) {
 
   return (
     <div className="create-container">
-      <h1>Create a New Listing</h1>
+
+      <h1 classname="titleHeader">Create a New Listing</h1>
+
       <form onSubmit={handleSubmit}>
-        <input
+      <h3 className="label">Listing Title</h3>
+        <input className ="title"
           type="text"
-          placeholder="Listing title"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
           required
         />
-        <input
+        <h3 className="label">Category</h3>
+        <input className="category"
           type="text"
-          placeholder="Description"
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-          required
-        />
-        <input
-          type="text"
-          placeholder="Category"
           value={category}
           onChange={(e) => setCategory(e.target.value)}
           required
         />
-        <input
+        <h3 className="label">Location</h3>
+        <input classNmae="location"
           type="text"
-          placeholder="Image URL"
-          value={images}
-          onChange={(e) => setImages(e.target.value)}
-          required
-        />
-        <input
-          type="text"
-          placeholder="Location"
           value={location}
           onChange={(e) => setLocation(e.target.value)}
           required
         />
+        <h3 className="label">Image Url</h3>
+        <input className="image-url"
+          type="text"
+          value={images}
+          onChange={(e) => setImages(e.target.value)}
+          required
+        />
+        <h3 className="label">Description</h3>
+        <input className="description"
+          type="text"
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
+          required
+        />
+        
+      </form>
+      <div className="bottom-div">
+      <button className="back-button" onClick={() => navigate("/account")}>
+          Cancel
+        </button>
         <button type="submit" onClick={() => navigate("/account")}>
           Submit Listing
         </button>
-      </form>
-      <button className="back-button" onClick={() => navigate("/account")}>
-        Cancel
-      </button>
+      </div>
     </div>
   );
 }
