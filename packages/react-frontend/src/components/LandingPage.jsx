@@ -8,20 +8,22 @@ function LandingPage() {
   };
 
   const handleSignUpClick = () => {
-    navigate("/signUp");
+    navigate("/signup");
   };
 
   return (
-    <div style={{
-      background: "linear-gradient(to right, #a1c4fd, #c2e9fb)",
-      height: "100vh",
-      display: "flex",
-      flexDirection: "column",
-      alignItems: "center",
-      justifyContent: "center",
-      textAlign: "center",
-      padding: "20px"
-    }}>
+    <div
+      style={{
+        background: "linear-gradient(to right, #a1c4fd, #c2e9fb)",
+        height: "100vh",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+        textAlign: "center",
+        padding: "20px",
+      }}
+    >
       <h1 style={{ fontSize: "80px", color: "#fff", marginBottom: "20px" }}>
         <b>Hello, Welcome to FreebieFinder!</b>
       </h1>
@@ -32,7 +34,7 @@ function LandingPage() {
         style={{
           borderRadius: "10px",
           margin: "10px",
-          backgroundColor: "#007bff", 
+          backgroundColor: "#007bff",
           color: "#fff",
           fontSize: "18px",
           boxShadow: "2px 2px 10px rgba(0, 0, 0, 0.2)",
@@ -43,7 +45,7 @@ function LandingPage() {
         }}
         onClick={handleSignUpClick}
       >
-        Sign Up
+        <b>Sign Up</b>
       </button>
       <button
         style={{
@@ -60,7 +62,7 @@ function LandingPage() {
         }}
         onClick={handleLoginClick}
       >
-        Already have an account
+        <b>Already have an account</b>
       </button>
     </div>
   );

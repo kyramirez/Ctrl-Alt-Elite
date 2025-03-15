@@ -21,3 +21,10 @@ Development environment setup:
 13. Install eslint in the frontend by running "npm install -D eslint-plugin-react eslint-plugin-react-hooks eslint-plugin-react-refresh" in your frontend directory.
 14. Install eslint in the backend by running "npm install -D eslint @eslint/compat @eslint/eslintrc @eslint/js" in your backend directory.
 15. Set up formatting and linting according to the CONTRIBUTING.md.
+16. Setup deployment:
+    17. run: npm ci
+    18. run: npm run -w express-backend lint
+    19. run: npm run -w react-frontend lint
+    20. run: npm run -w react-frontend build
+
+doc folder link: https://vscode.dev/github/kyramirez/Ctrl-Alt-Elite/blob/main/docs 
