@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 function Login(props) {
@@ -27,8 +27,8 @@ function Login(props) {
   function submitForm() {
     console.log("Button was clicked.");
     console.log("Login.jsx is sending creds: ", creds);
-    creds.username = creds.username.trim();
-    props.handleSubmit(creds);
+    const trimmed = { ...creds, username: creds.username.trim() };
+    props.handleSubmit(trimmed);
     setCreds({ username: "", pwd: "" });
   }
 
@@ -100,7 +100,7 @@ function Login(props) {
         <input
           type="password"
           name="pwd"
-          id="pwd"
+          id="password"
           value={creds.pwd}
           onChange={handleChange}
           style={inputStyle}
@@ -108,7 +108,7 @@ function Login(props) {
       </div>
 
       <input
-        type="button"
+        type="submit"
         value={props.buttonLabel || "Log In"}
         onClick={submitForm}
         style={buttonStyle}

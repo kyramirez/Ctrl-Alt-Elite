@@ -28,3 +28,7 @@ Development environment setup:
     20. run: npm run -w react-frontend build
 
 doc folder link: https://vscode.dev/github/kyramirez/Ctrl-Alt-Elite/blob/main/docs 
+
+
+Jest testing results on Login component:
+![Full coverage](./test_results.png)
