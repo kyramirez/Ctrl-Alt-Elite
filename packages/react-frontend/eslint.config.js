@@ -45,15 +45,4 @@ export default [
       "no-unused-vars": "off",
     },
   },
-  {
-    overrides: [
-      {
-        files: ["tests/**/*"],
-        plugins: ["jest"],
-        env: {
-          "jest/globals": true,
-        },
-      },
-    ],
-  },
 ];
