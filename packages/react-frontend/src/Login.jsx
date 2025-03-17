@@ -94,7 +94,7 @@ function Login(props) {
       </div>
 
       <div style={formGroupStyle}>
-        <label htmlFor="password" style={labelStyle}>
+        <label htmlFor="pwd" style={labelStyle}>
           Password
         </label>
         <input
