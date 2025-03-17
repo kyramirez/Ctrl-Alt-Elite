@@ -108,7 +108,7 @@ function Login(props) {
       </div>
 
       <input
-        type="submit"
+        type="button"
         value={props.buttonLabel || "Log In"}
         onClick={submitForm}
         style={buttonStyle}
