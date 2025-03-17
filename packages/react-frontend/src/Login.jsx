@@ -100,7 +100,7 @@ function Login(props) {
         <input
           type="password"
           name="pwd"
-          id="pwd"
+          id="password"
           value={creds.pwd}
           onChange={handleChange}
           style={inputStyle}
